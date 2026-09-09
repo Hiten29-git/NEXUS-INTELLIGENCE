@@ -1,0 +1,101 @@
+user_id,risk_score,risk_level,anomaly_label,anomaly_score,ioc_matches,process_execution_frequency,file_access_frequency,network_connection_frequency,predicted_stage,prediction_confidence,evidence
+U098,94.0,CRITICAL,-1,-0.1520522896446114,9,8,11,8,Lateral Movement,0.85,IoC match detected; elevated process execution; unusual network activity; high file/resource access
+U093,93.0,CRITICAL,-1,-0.1552401768795059,10,6,12,12,Lateral Movement,0.85,IoC match detected; elevated process execution; unusual network activity; high file/resource access
+U097,90.5,CRITICAL,-1,-0.1297672979221428,9,9,7,10,Lateral Movement,0.85,IoC match detected; elevated process execution; unusual network activity
+U100,89.5,CRITICAL,-1,-0.0921379228404167,4,5,10,9,Collection,0.74,IoC match detected; elevated process execution; unusual network activity; high file/resource access
+U096,86.5,CRITICAL,-1,-0.1873862820643634,11,4,7,16,Lateral Movement,0.85,IoC match detected; unusual network activity
+U092,85.5,CRITICAL,-1,-0.0650104245854423,8,5,9,4,Collection,0.74,IoC match detected; elevated process execution; high file/resource access
+U099,85.0,CRITICAL,-1,-0.0382342915085002,4,5,8,6,Collection,0.74,IoC match detected; elevated process execution; high file/resource access
+U095,84.0,CRITICAL,-1,-0.0400472630641178,5,4,9,5,Collection,0.74,IoC match detected; high file/resource access
+U094,81.0,CRITICAL,-1,-0.0188836835636482,3,5,6,6,Network Discovery,0.7,IoC match detected; elevated process execution
+U015,38.0,MEDIUM,-1,-0.0514893213061048,0,0,0,6,Suspicious Activity,0.6,No significant evidence
+U091,26.0,LOW,1,0.0020981870626275,0,5,9,5,No Significant Threat,0.9,elevated process execution; high file/resource access
+U002,19.5,LOW,1,0.0865366357556519,0,6,4,3,No Significant Threat,0.9,elevated process execution
+U082,19.0,LOW,1,0.0107837158537986,0,7,3,1,No Significant Threat,0.9,elevated process execution
+U037,18.5,LOW,1,0.0972763096727686,0,5,4,5,No Significant Threat,0.9,elevated process execution
+U014,18.0,LOW,1,0.1312127577448121,0,4,6,2,No Significant Threat,0.9,No significant evidence
+U083,18.0,LOW,1,0.1312127577448121,0,4,6,2,No Significant Threat,0.9,No significant evidence
+U073,18.0,LOW,1,0.0569964074522112,0,7,2,2,No Significant Threat,0.9,elevated process execution
+U033,18.0,LOW,1,0.1007663488041974,0,4,6,2,No Significant Threat,0.9,No significant evidence
+U090,18.0,LOW,1,0.1280595491503843,0,5,4,4,No Significant Threat,0.9,elevated process execution
+U017,17.0,LOW,1,0.1384092464951092,0,5,4,2,No Significant Threat,0.9,elevated process execution
+U065,17.0,LOW,1,0.1366757176921379,0,5,4,2,No Significant Threat,0.9,elevated process execution
+U043,16.5,LOW,1,0.0537246557893691,0,4,5,2,No Significant Threat,0.9,No significant evidence
+U051,16.5,LOW,1,0.1297774083955949,0,5,3,4,No Significant Threat,0.9,elevated process execution
+U081,15.5,LOW,1,0.0871639917711385,0,3,6,1,No Significant Threat,0.9,No significant evidence
+U076,15.5,LOW,1,0.1386230487327248,0,5,3,2,No Significant Threat,0.9,elevated process execution
+U018,15.5,LOW,1,0.1512138258964994,0,4,4,3,No Significant Threat,0.9,No significant evidence
+U049,15.0,LOW,1,0.1434454375024835,0,3,5,3,No Significant Threat,0.9,No significant evidence
+U072,15.0,LOW,1,0.1390499986589253,0,4,3,5,No Significant Threat,0.9,No significant evidence
+U020,15.0,LOW,1,0.1504878761917052,0,4,4,2,No Significant Threat,0.9,No significant evidence
+U044,14.5,LOW,1,0.0408824151080777,0,1,7,4,No Significant Threat,0.9,No significant evidence
+U026,14.5,LOW,1,0.1543094923355659,0,5,2,3,No Significant Threat,0.9,elevated process execution
+U067,14.5,LOW,1,0.1507485998067109,0,5,2,3,No Significant Threat,0.9,elevated process execution
+U077,14.0,LOW,1,0.1217908063201797,0,2,6,2,No Significant Threat,0.9,No significant evidence
+U084,14.0,LOW,1,0.1292762629801692,0,5,2,2,No Significant Threat,0.9,elevated process execution
+U047,14.0,LOW,1,0.0701453362893753,0,4,2,6,No Significant Threat,0.9,No significant evidence
+U061,13.5,LOW,1,0.1619125576968258,0,3,4,3,No Significant Threat,0.9,No significant evidence
+U057,13.0,LOW,1,0.1220065759908783,0,4,2,4,No Significant Threat,0.9,No significant evidence
+U058,13.0,LOW,1,0.1015469006635759,0,2,4,6,No Significant Threat,0.9,No significant evidence
+U059,13.0,LOW,1,0.1443459880854588,0,3,4,2,No Significant Threat,0.9,No significant evidence
+U012,13.0,LOW,1,0.1399990486680467,0,2,5,3,No Significant Threat,0.9,No significant evidence
+U016,13.0,LOW,1,0.1561144302365105,0,4,2,4,No Significant Threat,0.9,No significant evidence
+U071,12.5,LOW,1,0.1378811927487283,0,2,4,5,No Significant Threat,0.9,No significant evidence
+U036,12.5,LOW,1,0.1618230962247049,0,3,3,4,No Significant Threat,0.9,No significant evidence
+U034,12.5,LOW,1,0.1180910612017693,0,5,1,2,No Significant Threat,0.9,elevated process execution
+U023,12.5,LOW,1,0.1441477481646805,0,3,3,4,No Significant Threat,0.9,No significant evidence
+U011,12.5,LOW,1,0.0794833078432237,0,3,3,4,No Significant Threat,0.9,No significant evidence
+U060,12.0,LOW,1,0.155633760400356,0,4,2,2,No Significant Threat,0.9,No significant evidence
+U056,12.0,LOW,1,0.1514802190585036,0,3,3,3,No Significant Threat,0.9,No significant evidence
+U013,12.0,LOW,1,0.1491406345382394,0,4,2,2,No Significant Threat,0.9,No significant evidence
+U078,12.0,LOW,1,0.1728256662439851,0,3,3,3,No Significant Threat,0.9,No significant evidence
+U070,12.0,LOW,1,0.1277475972902937,0,2,4,4,No Significant Threat,0.9,No significant evidence
+U024,12.0,LOW,1,0.1514802190585036,0,3,3,3,No Significant Threat,0.9,No significant evidence
+U027,12.0,LOW,1,0.1701705179790576,0,4,2,2,No Significant Threat,0.9,No significant evidence
+U021,12.0,LOW,1,0.1758689339024138,0,3,3,3,No Significant Threat,0.9,No significant evidence
+U022,12.0,LOW,1,0.1654924718391761,0,4,2,2,No Significant Threat,0.9,No significant evidence
+U038,12.0,LOW,1,0.0827179540103523,0,4,2,2,No Significant Threat,0.9,No significant evidence
+U039,11.5,LOW,1,0.1503792462057107,0,2,4,3,No Significant Threat,0.9,No significant evidence
+U069,11.5,LOW,1,0.0531493317059983,0,5,1,0,No Significant Threat,0.9,elevated process execution
+U045,11.5,LOW,1,0.1251709615331645,0,2,3,6,No Significant Threat,0.9,No significant evidence
+U004,11.5,LOW,1,0.1503792462057107,0,2,4,3,No Significant Threat,0.9,No significant evidence
+U006,11.5,LOW,1,0.0531493317059983,0,5,1,0,No Significant Threat,0.9,elevated process execution
+U025,11.5,LOW,1,0.1251709615331645,0,2,3,6,No Significant Threat,0.9,No significant evidence
+U063,11.5,LOW,1,0.1204010591670067,0,2,3,6,No Significant Threat,0.9,No significant evidence
+U066,11.5,LOW,1,0.1067314106057832,0,2,4,3,No Significant Threat,0.9,No significant evidence
+U079,11.0,LOW,1,0.0930997947970222,0,1,5,3,No Significant Threat,0.9,No significant evidence
+U035,11.0,LOW,1,0.1541145176136766,0,3,2,4,No Significant Threat,0.9,No significant evidence
+U050,11.0,LOW,1,0.1491523868998616,0,2,3,5,No Significant Threat,0.9,No significant evidence
+U007,11.0,LOW,1,0.1483517768839187,0,2,4,2,No Significant Threat,0.9,No significant evidence
+U008,11.0,LOW,1,0.1483517768839187,0,2,4,2,No Significant Threat,0.9,No significant evidence
+U041,10.5,LOW,1,0.105443976419322,0,1,4,5,No Significant Threat,0.9,No significant evidence
+U009,10.5,LOW,1,0.1043043388626875,0,2,4,1,No Significant Threat,0.9,No significant evidence
+U087,10.5,LOW,1,0.0443093062290903,0,4,0,5,No Significant Threat,0.9,No significant evidence
+U053,10.5,LOW,1,0.1698972204165827,0,3,2,3,No Significant Threat,0.9,No significant evidence
+U068,10.0,LOW,1,0.0791277329603394,0,2,3,3,No Significant Threat,0.9,No significant evidence
+U019,10.0,LOW,1,0.1760943749207587,0,2,3,3,No Significant Threat,0.9,No significant evidence
+U064,9.5,LOW,1,0.1653783540803723,0,2,3,2,No Significant Threat,0.9,No significant evidence
+U086,9.5,LOW,1,0.0983499934520314,0,3,1,4,No Significant Threat,0.9,No significant evidence
+U005,9.5,LOW,1,0.1178652912689273,0,2,2,5,No Significant Threat,0.9,No significant evidence
+U030,9.5,LOW,1,0.1175759099179776,0,3,2,1,No Significant Threat,0.9,No significant evidence
+U003,9.5,LOW,1,0.1678761063436293,0,2,3,2,No Significant Threat,0.9,No significant evidence
+U089,9.0,LOW,1,0.0782383764009547,0,4,0,2,No Significant Threat,0.9,No significant evidence
+U062,9.0,LOW,1,0.1317355179773104,0,1,3,5,No Significant Threat,0.9,No significant evidence
+U080,9.0,LOW,1,0.1274542317305435,0,1,3,5,No Significant Threat,0.9,No significant evidence
+U055,9.0,LOW,1,0.0403105453801867,0,3,1,3,No Significant Threat,0.9,No significant evidence
+U042,9.0,LOW,1,0.0589983024470971,0,0,5,3,No Significant Threat,0.9,No significant evidence
+U054,8.5,LOW,1,0.0592055953834769,0,0,5,2,No Significant Threat,0.9,No significant evidence
+U028,8.5,LOW,1,0.1605499922501677,0,2,2,3,No Significant Threat,0.9,No significant evidence
+U031,8.5,LOW,1,0.078237963317422,0,2,1,6,No Significant Threat,0.9,No significant evidence
+U010,8.5,LOW,1,0.1318042186205367,0,3,1,2,No Significant Threat,0.9,No significant evidence
+U088,8.5,LOW,1,0.1359605593591823,0,1,3,4,No Significant Threat,0.9,No significant evidence
+U001,8.5,LOW,1,0.1689939834185956,0,2,2,3,No Significant Threat,0.9,No significant evidence
+U048,8.0,LOW,1,0.1624421368927288,0,2,2,2,No Significant Threat,0.9,No significant evidence
+U032,8.0,LOW,1,0.1141684569968369,0,2,1,5,No Significant Threat,0.9,No significant evidence
+U029,8.0,LOW,1,0.1524325423347289,0,1,3,3,No Significant Threat,0.9,No significant evidence
+U052,7.5,LOW,1,0.1162155064614144,0,1,2,5,No Significant Threat,0.9,No significant evidence
+U075,7.5,LOW,1,0.0373130252206699,0,1,3,2,No Significant Threat,0.9,No significant evidence
+U074,7.0,LOW,1,0.1022235692469031,0,1,3,1,No Significant Threat,0.9,No significant evidence
+U040,6.5,LOW,1,0.1413508340487673,0,1,2,3,No Significant Threat,0.9,No significant evidence
+U046,5.0,LOW,1,0.0589216403018017,0,1,1,3,No Significant Threat,0.9,No significant evidence
+U085,4.5,LOW,1,0.0847225678688927,0,1,1,2,No Significant Threat,0.9,No significant evidence
