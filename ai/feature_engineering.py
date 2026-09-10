@@ -46,7 +46,7 @@ def build_features(events: pd.DataFrame) -> pd.DataFrame:
 
 if __name__ == "__main__":
 
-    dataset_path = "datasets/security_events/sample_events.csv"
+    dataset_path = "datasets/security_events/security_events.csv"
 
     events = load_events(dataset_path)
 
