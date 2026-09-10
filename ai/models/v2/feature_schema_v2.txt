@@ -1,0 +1,11 @@
+process_execution_frequency
+network_connection_frequency
+unique_processes
+unique_destinations
+process_burst
+network_burst
+process_diversity
+destination_diversity
+process_network_ratio
+log_process
+log_network
