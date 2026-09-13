@@ -1,0 +1,14 @@
+{
+  "timestamp": "2026-09-13T12:38:21.230735+00:00",
+  "version": "V5.5",
+  "source_version": "V5.4",
+  "risk_score": "4.46/100",
+  "severity": "LOW",
+  "attack_stage": "NO_SIGNIFICANT_THREAT",
+  "confidence": "90.0%",
+  "model_prediction": "1",
+  "description": "No meaningful attack-stage behavior detected.",
+  "reasons": [
+    "Risk remains below the suspicious-activity threshold."
+  ]
+}
