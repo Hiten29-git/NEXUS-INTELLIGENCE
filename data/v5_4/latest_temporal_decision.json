@@ -1,0 +1,16 @@
+{
+  "timestamp": "2026-09-13T12:28:29.272035+00:00",
+  "version": "V5.4",
+  "base_risk_score": 4.46,
+  "average_recent_risk": 4.46,
+  "consecutive_anomalies": 0,
+  "temporal_bonus": 0,
+  "risk_score": "4.46/100",
+  "severity": "LOW",
+  "response": "ALLOW",
+  "model_prediction": "1",
+  "model_score": "0.1615",
+  "explanation": [
+    "no persistent threat pattern detected"
+  ]
+}
