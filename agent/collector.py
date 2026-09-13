@@ -1,173 +1,211 @@
-import json
 import os
-import socket
+import json
 import time
-import getpass
+import socket
+import subprocess
 from datetime import datetime, timezone
 
 import psutil
 
 
-OUTPUT_FILE = "data/live/live_events.jsonl"
+# ============================================================
+# NEXUS INTELLIGENCE — V4 REAL-TIME TELEMETRY COLLECTOR
+# ============================================================
 
-DEVICE_ID = socket.gethostname()
-USER_ID = getpass.getuser()
+BASE_DIR = os.path.dirname(
+    os.path.dirname(
+        os.path.abspath(__file__)
+    )
+)
 
-seen_pids = set()
-seen_connections = set()
+DATA_DIR = os.path.join(
+    BASE_DIR,
+    "data",
+    "live"
+)
 
+EVENT_FILE = os.path.join(
+    DATA_DIR,
+    "live_events_v4.jsonl"
+)
+
+os.makedirs(
+    DATA_DIR,
+    exist_ok=True
+)
+
+
+# ============================================================
+# CONFIGURATION
+# ============================================================
+
+POLL_INTERVAL = 2
+
+HOSTNAME = socket.gethostname()
+
+try:
+    CURRENT_USER = psutil.users()[0].name
+except Exception:
+    CURRENT_USER = os.getenv(
+        "USER",
+        "unknown"
+    )
+
+
+# ============================================================
+# STATE
+# ============================================================
+
+known_processes = set()
+
+previous_cpu = None
+previous_memory = None
+
+
+# ============================================================
+# HELPERS
+# ============================================================
 
 def timestamp():
-    return datetime.now(timezone.utc).isoformat()
+    return datetime.now(
+        timezone.utc
+    ).isoformat()
 
 
-def emit_event(event_type, **kwargs):
+def write_event(event):
+    try:
+        with open(
+            EVENT_FILE,
+            "a",
+            encoding="utf-8"
+        ) as f:
 
-    event = {
+            f.write(
+                json.dumps(
+                    event,
+                    separators=(",", ":")
+                )
+                + "\n"
+            )
+
+    except Exception as e:
+        print(
+            f"[WRITE ERROR] {e}"
+        )
+
+
+def base_event(event_type):
+    return {
         "timestamp": timestamp(),
-        "user_id": USER_ID,
-        "device_id": DEVICE_ID,
+        "user_id": CURRENT_USER,
+        "device_id": HOSTNAME,
         "event_type": event_type,
         "source_ip": None,
         "destination_ip": None,
+        "destination_port": None,
+        "protocol": None,
         "process": None,
         "parent_process": None,
         "resource": None,
-        "ioc_match": False,
-        **kwargs
+        "ioc_match": False
     }
 
-    print(json.dumps(event))
 
-    os.makedirs(
-        os.path.dirname(OUTPUT_FILE),
-        exist_ok=True
-    )
+# ============================================================
+# PROCESS COLLECTION
+# ============================================================
 
-    with open(OUTPUT_FILE, "a") as f:
-        f.write(json.dumps(event) + "\n")
-
-
-def initialize_baseline():
-
-    global seen_pids
-    global seen_connections
-
-    # Existing processes become the baseline.
-    # They will NOT be reported as new executions.
-
-    try:
-
-        seen_pids = {
-            process.info["pid"]
-            for process in psutil.process_iter(["pid"])
-            if process.info["pid"] is not None
-        }
-
-    except Exception:
-
-        seen_pids = set()
-
-    # Existing network connections become the baseline.
-
-    try:
-
-        connections = psutil.net_connections(
-            kind="inet"
-        )
-
-        seen_connections = {
-            (
-                connection.pid,
-                connection.laddr.ip
-                if connection.laddr else None,
-                connection.laddr.port
-                if connection.laddr else None,
-                connection.raddr.ip
-                if connection.raddr else None,
-                connection.raddr.port
-                if connection.raddr else None
-            )
-            for connection in connections
-            if connection.status == psutil.CONN_ESTABLISHED
-            and connection.laddr
-            and connection.raddr
-        }
-
-    except (
-        psutil.AccessDenied,
-        PermissionError
-    ):
-
-        seen_connections = set()
-
-
-def get_process_name(pid):
-
-    if not pid:
-        return None
-
-    try:
-
-        return psutil.Process(pid).name()
-
-    except (
-        psutil.NoSuchProcess,
-        psutil.AccessDenied,
-        psutil.ZombieProcess
-    ):
-
-        return None
-
-
-def collect_process_events():
-
-    global seen_pids
+def collect_processes():
 
     current_pids = set()
 
-    for process in psutil.process_iter(
-        ["pid", "name", "username", "exe", "ppid"]
-    ):
+    try:
+        processes = psutil.process_iter(
+            [
+                "pid",
+                "name",
+                "ppid",
+                "username",
+                "cmdline"
+            ]
+        )
 
-        try:
+        for proc in processes:
 
-            info = process.info
+            try:
+                info = proc.info
 
-            pid = info.get("pid")
-
-            if pid is None:
-                continue
-
-            current_pids.add(pid)
-
-            if pid not in seen_pids:
-
-                emit_event(
-                    "PROCESS_EXECUTION",
-                    process=info.get("name"),
-                    parent_process=str(
-                        info.get("ppid")
-                    ),
-                    resource=info.get("exe")
+                pid = info.get(
+                    "pid"
                 )
 
-        except (
-            psutil.NoSuchProcess,
-            psutil.AccessDenied,
-            psutil.ZombieProcess
-        ):
+                current_pids.add(
+                    pid
+                )
 
-            continue
+                if pid in known_processes:
+                    continue
 
-    seen_pids = current_pids
+                name = (
+                    info.get("name")
+                    or "unknown"
+                )
+
+                parent_pid = (
+                    info.get("ppid")
+                )
+
+                event = base_event(
+                    "PROCESS_EXECUTION"
+                )
+
+                event.update({
+                    "process": name,
+                    "parent_process": str(
+                        parent_pid
+                    )
+                    if parent_pid
+                    else None,
+                    "resource": (
+                        f"pid:{pid}"
+                    )
+                })
+
+                write_event(event)
+
+                print(
+                    f"[PROCESS] "
+                    f"{name} "
+                    f"(PID {pid})"
+                )
+
+            except (
+                psutil.NoSuchProcess,
+                psutil.AccessDenied,
+                psutil.ZombieProcess
+            ):
+                continue
+
+    except Exception as e:
+
+        print(
+            f"[PROCESS ERROR] {e}"
+        )
+
+    return current_pids
 
 
-def collect_network_events():
+# ============================================================
+# NETWORK COLLECTION
+# ============================================================
 
-    global seen_connections
+def collect_network():
 
-    current_connections = set()
+    connections = []
+
+    # --------------------------------------------------------
+    # Method 1: psutil
+    # --------------------------------------------------------
 
     try:
 
@@ -175,82 +213,471 @@ def collect_network_events():
             kind="inet"
         )
 
-        for connection in connections:
+    except Exception:
+        connections = []
 
-            if connection.status != psutil.CONN_ESTABLISHED:
+    for conn in connections:
+
+        try:
+
+            if not conn.raddr:
                 continue
 
-            if not connection.laddr or not connection.raddr:
-                continue
-
-            connection_id = (
-                connection.pid,
-                connection.laddr.ip,
-                connection.laddr.port,
-                connection.raddr.ip,
-                connection.raddr.port
+            destination_ip = (
+                conn.raddr.ip
             )
 
-            current_connections.add(
-                connection_id
+            destination_port = (
+                conn.raddr.port
             )
 
-            if connection_id not in seen_connections:
+            event = base_event(
+                "NETWORK_CONNECTION"
+            )
 
-                process_name = get_process_name(
-                    connection.pid
-                )
+            event.update({
+                "source_ip": (
+                    conn.laddr.ip
+                    if conn.laddr
+                    else None
+                ),
+                "destination_ip":
+                    destination_ip,
 
-                emit_event(
-                    "NETWORK_CONNECTION",
-                    source_ip=connection.laddr.ip,
-                    destination_ip=connection.raddr.ip,
-                    process=process_name
-                )
+                "destination_port":
+                    destination_port,
 
-    except (
-        psutil.AccessDenied,
-        PermissionError
-    ):
+                "protocol":
+                    "TCP/UDP",
 
-        pass
+                "process":
+                    None,
 
-    seen_connections = current_connections
+                "resource":
+                    conn.status,
+
+            })
+
+            write_event(event)
+
+            print(
+                f"[NETWORK] "
+                f"{destination_ip}:"
+                f"{destination_port} "
+                f"{conn.status}"
+            )
+
+        except Exception:
+            continue
 
 
-def main():
+# ============================================================
+# NETWORK FALLBACK
+# ============================================================
 
-    print("=" * 60)
-    print("NEXUS INTELLIGENCE - REAL-TIME EVENT COLLECTOR")
-    print("=" * 60)
-
-    print(f"User   : {USER_ID}")
-    print(f"Device : {DEVICE_ID}")
-
-    print("Status : INITIALIZING BASELINE")
-
-    initialize_baseline()
-
-    print("Status : COLLECTING NEW LIVE EVENTS")
-    print("Press Ctrl+C to stop")
-
-    print("=" * 60)
+def collect_network_fallback():
 
     try:
 
-        while True:
+        result = subprocess.run(
+            [
+                "netstat",
+                "-an"
+            ],
+            capture_output=True,
+            text=True,
+            timeout=3
+        )
 
-            collect_process_events()
-            collect_network_events()
+        lines = result.stdout.splitlines()
 
-            time.sleep(2)
+        count = 0
 
-    except KeyboardInterrupt:
+        for line in lines:
 
-        print("\n")
-        print("=" * 60)
-        print("NEXUS COLLECTOR STOPPED")
-        print("=" * 60)
+            line = line.strip()
+
+            if not line:
+                continue
+
+            if (
+                "ESTABLISHED"
+                not in line
+                and "SYN_SENT"
+                not in line
+                and "CLOSE_WAIT"
+                not in line
+            ):
+                continue
+
+            parts = line.split()
+
+            if len(parts) < 4:
+                continue
+
+            destination = parts[-2]
+
+            event = base_event(
+                "NETWORK_CONNECTION"
+            )
+
+            event.update({
+                "destination_ip":
+                    destination,
+                "resource":
+                    parts[-1]
+                    if parts
+                    else None
+            })
+
+            write_event(event)
+
+            count += 1
+
+        if count:
+            print(
+                f"[NETWORK-FALLBACK] "
+                f"{count} connections"
+            )
+
+    except Exception:
+        pass
+
+
+# ============================================================
+# SYSTEM TELEMETRY
+# ============================================================
+
+def collect_system():
+
+    global previous_cpu
+    global previous_memory
+
+    try:
+
+        cpu = psutil.cpu_percent(
+            interval=None
+        )
+
+        memory = psutil.virtual_memory()
+
+        memory_percent = (
+            memory.percent
+        )
+
+        event = base_event(
+            "SYSTEM_ACTIVITY"
+        )
+
+        event.update({
+
+            "resource":
+                "system",
+
+            "cpu_percent":
+                round(cpu, 2),
+
+            "memory_percent":
+                round(
+                    memory_percent,
+                    2
+                ),
+
+            "cpu_delta":
+                round(
+                    cpu - previous_cpu,
+                    2
+                )
+                if previous_cpu
+                is not None
+                else 0,
+
+            "memory_delta":
+                round(
+                    memory_percent
+                    - previous_memory,
+                    2
+                )
+                if previous_memory
+                is not None
+                else 0
+        })
+
+        write_event(event)
+
+        previous_cpu = cpu
+        previous_memory = memory_percent
+
+    except Exception as e:
+
+        print(
+            f"[SYSTEM ERROR] {e}"
+        )
+
+
+# ============================================================
+# USER / SESSION TELEMETRY
+# ============================================================
+
+def collect_sessions():
+
+    try:
+
+        users = psutil.users()
+
+        event = base_event(
+            "USER_SESSION"
+        )
+
+        event.update({
+
+            "resource":
+                "active_sessions",
+
+            "session_count":
+                len(users)
+
+        })
+
+        write_event(event)
+
+    except Exception:
+        pass
+
+
+# ============================================================
+# FILESYSTEM METADATA
+# ============================================================
+
+def collect_file_activity():
+
+    directories = [
+        os.path.expanduser(
+            "~/Downloads"
+        ),
+        os.path.expanduser(
+            "~/Desktop"
+        )
+    ]
+
+    total_files = 0
+    total_size = 0
+
+    for directory in directories:
+
+        if not os.path.exists(
+            directory
+        ):
+            continue
+
+        try:
+
+            for name in os.listdir(
+                directory
+            ):
+
+                path = os.path.join(
+                    directory,
+                    name
+                )
+
+                try:
+
+                    if os.path.isfile(
+                        path
+                    ):
+
+                        total_files += 1
+
+                        total_size += (
+                            os.path.getsize(
+                                path
+                            )
+                        )
+
+                except (
+                    OSError,
+                    PermissionError
+                ):
+                    continue
+
+        except (
+            OSError,
+            PermissionError
+        ):
+            continue
+
+    event = base_event(
+        "FILE_ACTIVITY"
+    )
+
+    event.update({
+
+        "resource":
+            "user_file_metadata",
+
+        "file_count":
+            total_files,
+
+        "total_size_bytes":
+            total_size
+
+    })
+
+    write_event(event)
+
+
+# ============================================================
+# INITIAL BASELINE
+# ============================================================
+
+def initialize_baseline():
+
+    print(
+        "NEXUS INTELLIGENCE — V4 "
+        "REAL-TIME COLLECTOR"
+    )
+
+    print(
+        "=" * 60
+    )
+
+    print(
+        f"User   : {CURRENT_USER}"
+    )
+
+    print(
+        f"Device : {HOSTNAME}"
+    )
+
+    print(
+        f"Output : {EVENT_FILE}"
+    )
+
+    print(
+        "Status : INITIALIZING BASELINE"
+    )
+
+    try:
+
+        for proc in psutil.process_iter(
+            ["pid"]
+        ):
+
+            try:
+
+                pid = proc.info["pid"]
+
+                known_processes.add(
+                    pid
+                )
+
+            except Exception:
+                continue
+
+    except Exception:
+        pass
+
+    print(
+        f"Baseline processes: "
+        f"{len(known_processes)}"
+    )
+
+    print(
+        "Status : COLLECTING LIVE EVENTS"
+    )
+
+    print(
+        "Press Ctrl+C to stop"
+    )
+
+    print(
+        "=" * 60
+    )
+
+
+# ============================================================
+# MAIN LOOP
+# ============================================================
+
+def main():
+
+    initialize_baseline()
+
+    cycle = 0
+
+    while True:
+
+        try:
+
+            current_processes = (
+                collect_processes()
+            )
+
+            # ------------------------------------------------
+            # Network
+            # ------------------------------------------------
+
+            collect_network()
+
+            # If psutil cannot access network connections,
+            # use macOS netstat as fallback.
+            if cycle % 5 == 0:
+
+                collect_network_fallback()
+
+            # ------------------------------------------------
+            # System
+            # ------------------------------------------------
+
+            collect_system()
+
+            # ------------------------------------------------
+            # User sessions
+            # ------------------------------------------------
+
+            collect_sessions()
+
+            # ------------------------------------------------
+            # File metadata
+            # ------------------------------------------------
+
+            if cycle % 5 == 0:
+
+                collect_file_activity()
+
+            # ------------------------------------------------
+            # Update process baseline
+            # ------------------------------------------------
+
+            known_processes.update(
+                current_processes
+            )
+
+            cycle += 1
+
+            time.sleep(
+                POLL_INTERVAL
+            )
+
+        except KeyboardInterrupt:
+
+            print()
+            print(
+                "NEXUS collector stopped."
+            )
+
+            break
+
+        except Exception as e:
+
+            print(
+                f"[COLLECTOR ERROR] {e}"
+            )
+
+            time.sleep(
+                POLL_INTERVAL
+            )
 
 
 if __name__ == "__main__":
