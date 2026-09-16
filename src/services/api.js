@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const STORAGE_KEY = 'nexus_server_url';
-const DEFAULT_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api/v1';
+const DEFAULT_URL = import.meta.env.VITE_API_BASE_URL || '/api/v1';
 
 /**
  * Normalizes user-input IP/URL into a valid HTTP endpoint
@@ -10,6 +10,8 @@ const DEFAULT_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/
 export function normalizeServerUrl(rawUrl) {
   if (!rawUrl || typeof rawUrl !== 'string') return DEFAULT_URL;
   let trimmed = rawUrl.trim();
+
+  if (trimmed.startsWith('/')) return trimmed.replace(/\/+$/, '') || '/';
   
   // Prepend http:// if protocol is missing
   if (!/^https?:\/\//i.test(trimmed)) {

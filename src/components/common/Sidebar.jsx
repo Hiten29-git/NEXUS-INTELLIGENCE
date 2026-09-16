@@ -5,11 +5,7 @@ import {
   Network, 
   Server, 
   AlertTriangle, 
-  SlidersHorizontal,
-  ShieldCheck,
-  Radio,
-  Wifi,
-  WifiOff
+  SlidersHorizontal
 } from 'lucide-react';
 import { nexusApi } from '../../services/api';
 
@@ -36,46 +32,33 @@ export const Sidebar = () => {
   }, []);
 
   const navItems = [
-    {
-      name: 'Overview',
-      path: '/',
-      icon: LayoutDashboard,
-      badge: 'Live'
-    },
+    { name: 'Overview', path: '/', icon: LayoutDashboard },
     {
       name: 'Attack Graph',
       path: '/graph',
       icon: Network,
-      badge: 'Cytoscape'
     },
     {
       name: 'Asset Matrix',
       path: '/assets',
       icon: Server,
-      badge: 'Matrix'
     },
     {
       name: 'Threat Alerts',
       path: '/threats',
       icon: AlertTriangle,
-      badge: 'Feed'
     },
     {
       name: 'Remediation Simulator',
       path: '/simulate',
       icon: SlidersHorizontal,
-      badge: 'Sandbox'
     }
   ];
 
   return (
-    <aside className="flex w-64 flex-col justify-between border-r border-white/10 bg-cyber-950/80 p-4 backdrop-blur-xl shrink-0">
+    <aside className="hidden w-60 shrink-0 flex-col justify-between border-r border-slate-800 bg-[#080B12] p-4 sm:flex">
       <div>
-        <div className="mb-6 px-3 pt-2">
-          <p className="font-mono text-[10px] font-bold tracking-wider text-slate-500 uppercase">
-            NAVIGATION CONSOLE
-          </p>
-        </div>
+        <p className="mb-4 px-3 text-xs font-medium text-slate-500">Workspace</p>
 
         <nav className="space-y-1.5">
           {navItems.map((item) => {
@@ -88,8 +71,8 @@ export const Sidebar = () => {
                 className={({ isActive }) =>
                   `group flex items-center justify-between rounded-lg px-3.5 py-2.5 text-xs font-medium transition-all ${
                     isActive
-                      ? 'border border-cyan-500/40 bg-cyan-950/40 text-cyan-300 shadow-[0_0_15px_rgba(0,240,255,0.15)] font-semibold'
-                      : 'text-slate-400 hover:bg-slate-900/80 hover:text-slate-200'
+                      ? 'border border-red-500/30 bg-red-950/40 text-red-300 font-semibold'
+                      : 'text-slate-400 hover:bg-slate-900 hover:text-slate-100'
                   }`
                 }
               >
@@ -97,27 +80,17 @@ export const Sidebar = () => {
                   <Icon className="h-4 w-4 transition-transform group-hover:scale-110" />
                   <span>{item.name}</span>
                 </div>
-                {item.badge && (
-                  <span className="rounded bg-slate-800/80 px-1.5 py-0.5 font-mono text-[10px] text-slate-400 group-hover:text-cyan-300">
-                    {item.badge}
-                  </span>
-                )}
               </NavLink>
             );
           })}
         </nav>
       </div>
 
-      {/* System Status & Backend Connectivity Box */}
-      <div className="rounded-xl border border-white/5 bg-cyber-900/60 p-3.5 text-xs font-mono">
-        <div className="flex items-center gap-2 text-cyan-400 mb-2">
-          <ShieldCheck className="h-4 w-4" />
-          <span className="font-bold">NEXUS Intelligence</span>
+      <div className="rounded-lg border border-slate-800 bg-[#0D111A] p-3 text-xs">
+        <div className="mb-2 flex items-center gap-2 text-blue-400">
+          <img className="nexus-sidebar-logo" src="/nexus-logo.png" alt="NEXUS Intelligence" />
         </div>
-        <p className="text-[11px] text-slate-400 leading-relaxed">
-          Autonomous Attack Path Analysis & Graph Defense Engine.
-        </p>
-        <div className="mt-2.5 pt-2.5 border-t border-white/5 flex items-center justify-between text-[10px]">
+        <div className="flex items-center justify-between border-t border-slate-800 pt-2 text-[11px]">
           <span className="text-slate-500">API Connection:</span>
           {apiStatus === 'online' ? (
             <span className="flex items-center gap-1.5 text-emerald-400 font-bold">

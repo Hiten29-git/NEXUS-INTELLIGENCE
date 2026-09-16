@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Navbar from './components/common/Navbar';
 import Sidebar from './components/common/Sidebar';
 import ServerConnectionModal from './components/common/ServerConnectionModal';
-import OverviewPage from './pages/OverviewPage';
+import NexusLandingPage from './pages/NexusLandingPage';
 import AttackGraphPage from './pages/AttackGraphPage';
 import AssetInventoryPage from './pages/AssetInventoryPage';
 import ThreatsPage from './pages/ThreatsPage';
@@ -32,22 +32,20 @@ export function App() {
 
   return (
     <BrowserRouter>
-      <div className="flex min-h-screen flex-col bg-slate-950 text-slate-100 font-sans antialiased">
-        {/* Modern Top Header */}
+      <div className="flex min-h-screen flex-col bg-[#030508] text-slate-100 font-sans antialiased">
         <Navbar 
           onRefresh={handleGlobalRefresh} 
           isRefreshing={isRefreshing}
           onOpenServerModal={() => setIsServerModalOpen(true)}
         />
 
-        {/* Main Content Area with Sidebar */}
         <div className="flex flex-1 overflow-hidden">
           <Sidebar onOpenServerModal={() => setIsServerModalOpen(true)} />
 
           <main className="flex-1 overflow-y-auto p-6 lg:p-8" key={refreshKey}>
             <div className="mx-auto max-w-7xl">
               <Routes>
-                <Route path="/" element={<OverviewPage onOpenServerModal={() => setIsServerModalOpen(true)} />} />
+                <Route path="/" element={<NexusLandingPage onOpenServerModal={() => setIsServerModalOpen(true)} />} />
                 <Route path="/graph" element={<AttackGraphPage onOpenServerModal={() => setIsServerModalOpen(true)} />} />
                 <Route path="/assets" element={<AssetInventoryPage onOpenServerModal={() => setIsServerModalOpen(true)} />} />
                 <Route path="/threats" element={<ThreatsPage onOpenServerModal={() => setIsServerModalOpen(true)} />} />

@@ -36,7 +36,7 @@ export const ServerConnectionModal = ({ isOpen, onClose, onConnected }) => {
   };
 
   const handleReset = () => {
-    const defaultUrl = 'http://localhost:8000/api/v1';
+    const defaultUrl = normalizeServerUrl(import.meta.env.VITE_API_BASE_URL || '/api/v1');
     setInputUrl(defaultUrl);
     setTestResult(null);
   };

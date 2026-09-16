@@ -1,11 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { Shield, Server, RefreshCw, Clock, CheckCircle2, AlertCircle } from 'lucide-react';
+import { Link, NavLink } from 'react-router-dom';
+import { Menu, Server, RefreshCw, X } from 'lucide-react';
 import { getServerBaseUrl, nexusApi } from '../../services/api';
 
 export const Navbar = ({ onRefresh, isRefreshing, onOpenServerModal }) => {
   const [serverUrl, setServerUrl] = useState(getServerBaseUrl());
   const [serverStatus, setServerStatus] = useState('checking'); // 'online' | 'offline' | 'checking'
-  const [time, setTime] = useState(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' }));
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const navigation = [
+    { label: 'Platform', path: '/' },
+    { label: 'Intelligence', path: '/threats' },
+    { label: 'Threat Graph', path: '/graph' },
+    { label: 'Attack Paths', path: '/simulate' },
+    { label: 'AI Analysis', path: '/assets' },
+  ];
 
   const checkConnectivity = async () => {
     try {
@@ -17,13 +27,6 @@ export const Navbar = ({ onRefresh, isRefreshing, onOpenServerModal }) => {
   };
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setTime(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' }));
-    }, 1000);
-    return () => clearInterval(timer);
-  }, []);
-
-  useEffect(() => {
     checkConnectivity();
     const interval = setInterval(checkConnectivity, 12000);
 
@@ -33,9 +36,12 @@ export const Navbar = ({ onRefresh, isRefreshing, onOpenServerModal }) => {
     };
 
     window.addEventListener('nexus_server_url_changed', handleUrlChange);
+    const handleScroll = () => setIsScrolled(window.scrollY > 8);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => {
       clearInterval(interval);
       window.removeEventListener('nexus_server_url_changed', handleUrlChange);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
@@ -49,30 +55,27 @@ export const Navbar = ({ onRefresh, isRefreshing, onOpenServerModal }) => {
   }
 
   return (
-    <header className="sticky top-0 z-40 flex h-16 w-full items-center justify-between border-b border-slate-800 bg-slate-900/95 px-6 backdrop-blur font-sans">
-      {/* Brand Identity */}
-      <div className="flex items-center gap-3">
-        <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-blue-600 text-white shadow-sm">
-          <Shield className="h-5 w-5" />
-        </div>
+    <header className={`nexus-navbar sticky top-0 z-40 flex h-16 w-full items-center justify-between border-b px-4 font-sans transition-all sm:px-6 ${isScrolled ? 'nexus-navbar-scrolled' : ''}`}>
+      <Link to="/" className="flex items-center gap-3" onClick={() => setIsMenuOpen(false)}>
+        <img className="nexus-brand-logo" src="/nexus-logo.png" alt="NEXUS Intelligence" />
         <div>
-          <div className="flex items-center gap-2">
-            <span className="text-base font-bold tracking-tight text-white">NEXUS</span>
-          </div>
-          <p className="text-[11px] text-slate-400 font-normal">Threat Intelligence & Attack Path Platform</p>
+          <span className="sr-only">NEXUS-INTELLIGENCE</span>
         </div>
-      </div>
+      </Link>
 
-      {/* Right Controls & Server IP Status */}
+      <nav className="nexus-navbar-links hidden items-center gap-1 lg:flex" aria-label="Primary navigation">
+        {navigation.map((item) => <NavLink key={item.path} to={item.path} end={item.path === '/'} className={({ isActive }) => `nexus-navbar-link ${isActive ? 'nexus-navbar-link-active' : ''}`}>{item.label}</NavLink>)}
+      </nav>
+
       <div className="flex items-center gap-3">
-        {/* Live Server IP Button */}
+        <a className="hidden text-xs font-semibold text-slate-400 transition-colors hover:text-blue-400 md:inline" href="#documentation">Documentation</a>
         <button
           onClick={onOpenServerModal}
           title="Click to configure or change backend server IP"
-          className="flex items-center gap-2 rounded-lg border border-slate-700 bg-slate-800/80 px-3 py-1.5 text-xs text-slate-200 hover:bg-slate-750 hover:border-slate-600 transition-colors"
+          className="flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-xs text-slate-600 hover:bg-slate-50 transition-colors"
         >
           <Server className="h-3.5 w-3.5 text-blue-400" />
-          <span className="hidden sm:inline font-mono text-[11px] text-slate-300">{serverDisplayHost}</span>
+          <span className="hidden sm:inline font-mono text-[11px] text-slate-500">{serverDisplayHost}</span>
           <span className="flex items-center gap-1">
             {serverStatus === 'online' ? (
               <span className="flex items-center gap-1 text-[11px] text-emerald-400 font-medium">
@@ -85,18 +88,11 @@ export const Navbar = ({ onRefresh, isRefreshing, onOpenServerModal }) => {
                 Offline
               </span>
             ) : (
-              <span className="h-2 w-2 rounded-full bg-slate-500 animate-pulse" />
+              <span className="h-2 w-2 rounded-full bg-slate-400 animate-pulse" />
             )}
           </span>
         </button>
 
-        {/* Live Clock */}
-        <div className="hidden md:flex items-center gap-1.5 rounded-lg border border-slate-800 bg-slate-950 px-3 py-1.5 text-xs text-slate-400 font-mono">
-          <Clock className="h-3.5 w-3.5 text-slate-500" />
-          <span>{time}</span>
-        </div>
-
-        {/* Refresh Button */}
         <button
           onClick={onRefresh}
           disabled={isRefreshing}
@@ -106,7 +102,13 @@ export const Navbar = ({ onRefresh, isRefreshing, onOpenServerModal }) => {
           <RefreshCw className={`h-3.5 w-3.5 ${isRefreshing ? 'animate-spin' : ''}`} />
           <span className="hidden sm:inline">Refresh</span>
         </button>
+
+        <button type="button" aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'} aria-expanded={isMenuOpen} onClick={() => setIsMenuOpen((open) => !open)} className="nexus-menu-button lg:hidden">
+          {isMenuOpen ? <X size={18} /> : <Menu size={18} />}
+        </button>
       </div>
+
+      {isMenuOpen && <nav className="nexus-mobile-menu lg:hidden" aria-label="Mobile navigation">{navigation.map((item) => <NavLink key={item.path} to={item.path} end={item.path === '/'} onClick={() => setIsMenuOpen(false)} className="nexus-mobile-link">{item.label}<span>↗</span></NavLink>)}<a href="#documentation" onClick={() => setIsMenuOpen(false)} className="nexus-mobile-link">Documentation<span>↗</span></a></nav>}
     </header>
   );
 };
