@@ -26,7 +26,7 @@ DATA_DIR = os.path.join(
 
 EVENT_FILE = os.path.join(
     DATA_DIR,
-    "live_events_v4.jsonl"
+    "live_events.jsonl"
 )
 
 os.makedirs(

@@ -1,0 +1,27 @@
+{
+  "version": "V5.25",
+  "model_type": "IsolationForest",
+  "window_seconds": 60,
+  "feature_count": 19,
+  "features": [
+    "total_events",
+    "process_execution_frequency",
+    "network_connection_frequency",
+    "file_activity_frequency",
+    "session_activity_frequency",
+    "system_activity_frequency",
+    "unique_processes",
+    "unique_destinations",
+    "unique_destination_ports",
+    "process_burst_rate",
+    "network_burst_rate",
+    "process_diversity",
+    "destination_diversity",
+    "process_network_ratio",
+    "new_process_ratio",
+    "avg_cpu_percent",
+    "max_cpu_percent",
+    "avg_memory_percent",
+    "max_memory_percent"
+  ]
+}

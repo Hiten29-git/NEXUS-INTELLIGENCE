@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0",
+  "event": {
+    "timestamp": "ISO-8601",
+    "user_id": "string",
+    "device_id": "string",
+    "event_type": "PROCESS_EXECUTION|NETWORK_CONNECTION|FILE_ACTIVITY|USER_SESSION|SYSTEM_ACTIVITY",
+    "source_ip": "string|null",
+    "source_port": "integer|null",
+    "destination_ip": "string|null",
+    "destination_port": "integer|null",
+    "process": "string|null",
+    "parent_process": "string|null",
+    "resource": "string|null",
+    "ioc_match": "boolean"
+  },
+  "analysis": {
+    "window_seconds": 60,
+    "total_events": "integer",
+    "ml_anomaly_score": "number",
+    "behavior_score": "number",
+    "combined_threat_score": "number",
+    "threat_level": "LOW|MEDIUM|HIGH|CRITICAL",
+    "predicted_stage": "string",
+    "prediction_score": "number",
+    "confidence": "LOW|MEDIUM|HIGH"
+  },
+  "explainability": {
+    "top_signals": [
+      {
+        "feature": "string",
+        "contribution": "number",
+        "reason": "string"
+      }
+    ]
+  },
+  "response": {
+    "action": "MONITOR|INVESTIGATE|CONTAIN|ESCALATE",
+    "priority": "LOW|MEDIUM|HIGH|CRITICAL",
+    "human_approval_required": true,
+    "automatic_destructive_action": false
+  }
+}

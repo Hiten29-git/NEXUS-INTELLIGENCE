@@ -1,0 +1,151 @@
+{
+  "version": "V5.25",
+  "windows": 237,
+  "features": {
+    "total_events": {
+      "mean": 24.632911392405063,
+      "std": 74.66373950584281,
+      "median": 2.0,
+      "q25": 1.0,
+      "q75": 4.0
+    },
+    "process_execution_frequency": {
+      "mean": 2.6033755274261603,
+      "std": 3.637561403511123,
+      "median": 1.0,
+      "q25": 1.0,
+      "q75": 3.0
+    },
+    "network_connection_frequency": {
+      "mean": 13.624472573839663,
+      "std": 44.680199708741405,
+      "median": 0.0,
+      "q25": 0.0,
+      "q75": 1.0
+    },
+    "file_activity_frequency": {
+      "mean": 0.7679324894514767,
+      "std": 2.6746109228527715,
+      "median": 0.0,
+      "q25": 0.0,
+      "q75": 0.0
+    },
+    "session_activity_frequency": {
+      "mean": 3.818565400843882,
+      "std": 13.296042216057028,
+      "median": 0.0,
+      "q25": 0.0,
+      "q75": 0.0
+    },
+    "system_activity_frequency": {
+      "mean": 3.818565400843882,
+      "std": 13.296042216057028,
+      "median": 0.0,
+      "q25": 0.0,
+      "q75": 0.0
+    },
+    "unique_processes": {
+      "mean": 2.0042194092827006,
+      "std": 2.311536817818431,
+      "median": 1.0,
+      "q25": 1.0,
+      "q75": 2.0
+    },
+    "unique_destinations": {
+      "mean": 1.8523206751054853,
+      "std": 4.43303814767769,
+      "median": 0.0,
+      "q25": 0.0,
+      "q75": 1.0
+    },
+    "unique_destination_ports": {
+      "mean": 0.3333333333333333,
+      "std": 0.6722926454528143,
+      "median": 0.0,
+      "q25": 0.0,
+      "q75": 0.0
+    },
+    "process_burst_rate": {
+      "mean": 2.168776371308017,
+      "std": 3.002293576039402,
+      "median": 1.0,
+      "q25": 1.0,
+      "q75": 2.0
+    },
+    "network_burst_rate": {
+      "mean": 3.1772151898734178,
+      "std": 8.579774443428411,
+      "median": 0.0,
+      "q25": 0.0,
+      "q75": 1.0
+    },
+    "process_diversity": {
+      "mean": 87.31785822784809,
+      "std": 59.22090564725792,
+      "median": 100.0,
+      "q25": 50.0,
+      "q75": 100.0
+    },
+    "destination_diversity": {
+      "mean": 21.355443037974684,
+      "std": 37.31462070410232,
+      "median": 0.0,
+      "q25": 0.0,
+      "q75": 18.2609
+    },
+    "process_network_ratio": {
+      "mean": 1.7898586497890296,
+      "std": 2.333825649300685,
+      "median": 1.0,
+      "q25": 1.0,
+      "q75": 2.0
+    },
+    "new_process_ratio": {
+      "mean": 0.6896194092827004,
+      "std": 0.4094389570338144,
+      "median": 1.0,
+      "q25": 0.5,
+      "q75": 1.0
+    },
+    "avg_cpu_percent": {
+      "mean": 0.5622071729957806,
+      "std": 1.984946364747145,
+      "median": 0.0,
+      "q25": 0.0,
+      "q75": 0.0
+    },
+    "max_cpu_percent": {
+      "mean": 1.6025316455696204,
+      "std": 5.969654363916717,
+      "median": 0.0,
+      "q25": 0.0,
+      "q75": 0.0
+    },
+    "avg_memory_percent": {
+      "mean": 5.302305485232067,
+      "std": 17.50292953296033,
+      "median": 0.0,
+      "q25": 0.0,
+      "q75": 0.0
+    },
+    "max_memory_percent": {
+      "mean": 5.416455696202531,
+      "std": 17.882794711865238,
+      "median": 0.0,
+      "q25": 0.0,
+      "q75": 0.0
+    }
+  },
+  "model": {
+    "n_estimators": 400,
+    "contamination": 0.05,
+    "random_state": 42
+  },
+  "training_result": {
+    "normal_windows": 225,
+    "anomaly_windows": 12,
+    "score_min": -0.06112247945240257,
+    "score_max": 0.3059853585393487,
+    "score_mean": 0.22189285946498422
+  }
+}
