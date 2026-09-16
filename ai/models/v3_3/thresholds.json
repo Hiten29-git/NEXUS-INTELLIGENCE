@@ -1,0 +1,10 @@
+{
+  "if_threshold": -0.7115722426269631,
+  "lof_threshold": -5424859792.896738,
+  "robust_threshold": 6.0,
+  "if_percentile": 1.0,
+  "lof_percentile": 1.0,
+  "robust_percentile": 99.0,
+  "ensemble_rule": "2_of_3",
+  "temporal_rule": "previous_1_or_2"
+}

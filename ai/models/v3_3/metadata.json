@@ -1,0 +1,13 @@
+{
+  "version": "3.3",
+  "training_windows": 185,
+  "holdout_windows": 47,
+  "detectors": [
+    "IsolationForest",
+    "LocalOutlierFactor",
+    "RobustMAD"
+  ],
+  "ensemble": "2-of-3",
+  "temporal_persistence": true,
+  "note": "Holdout contains normal telemetry only; FPR is not attack detection accuracy."
+}

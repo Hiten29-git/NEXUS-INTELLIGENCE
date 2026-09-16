@@ -1,0 +1,101 @@
+user_id,risk_score,risk_level,predicted_stage,prediction_confidence,ioc_matches,process_execution_frequency,file_access_frequency,network_connection_frequency,severity_evidence,threat_explanation,prediction_explanation
+U098,94.0,CRITICAL,Lateral Movement,0.85,9,8,11,8,CRITICAL risk score,Threat indicators: 9 IoC matches detected; elevated process execution (8); high file/resource access (11); unusual network activity (8).,Predicted next stage: Lateral Movement with 85% confidence.
+U093,93.0,CRITICAL,Lateral Movement,0.85,10,6,12,12,CRITICAL risk score,Threat indicators: 10 IoC matches detected; high file/resource access (12); unusual network activity (12).,Predicted next stage: Lateral Movement with 85% confidence.
+U097,90.5,CRITICAL,Lateral Movement,0.85,9,9,7,10,CRITICAL risk score,Threat indicators: 9 IoC matches detected; elevated process execution (9); unusual network activity (10).,Predicted next stage: Lateral Movement with 85% confidence.
+U100,89.5,CRITICAL,Collection,0.74,4,5,10,9,CRITICAL risk score,Threat indicators: 4 IoC match detected; high file/resource access (10); unusual network activity (9).,Predicted next stage: Collection with 74% confidence.
+U096,86.5,CRITICAL,Lateral Movement,0.85,11,4,7,16,CRITICAL risk score,Threat indicators: 11 IoC matches detected; unusual network activity (16).,Predicted next stage: Lateral Movement with 85% confidence.
+U092,85.5,CRITICAL,Collection,0.74,8,5,9,4,CRITICAL risk score,Threat indicators: 8 IoC matches detected; high file/resource access (9).,Predicted next stage: Collection with 74% confidence.
+U099,85.0,CRITICAL,Collection,0.74,4,5,8,6,CRITICAL risk score,Threat indicators: 4 IoC match detected; high file/resource access (8).,Predicted next stage: Collection with 74% confidence.
+U095,84.0,CRITICAL,Collection,0.74,5,4,9,5,CRITICAL risk score,Threat indicators: 5 IoC matches detected; high file/resource access (9).,Predicted next stage: Collection with 74% confidence.
+U094,81.0,CRITICAL,Network Discovery,0.7,3,5,6,6,CRITICAL risk score,Threat indicators: 3 IoC match detected.,Predicted next stage: Network Discovery with 70% confidence.
+U015,38.0,MEDIUM,Suspicious Activity,0.6,0,0,0,6,MEDIUM risk score,No significant behavioral threat indicators.,Predicted next stage: Suspicious Activity with 60% confidence.
+U091,26.0,LOW,No Significant Threat,0.9,0,5,9,5,LOW risk,Threat indicators: high file/resource access (9).,Predicted next stage: No Significant Threat with 90% confidence.
+U002,19.5,LOW,No Significant Threat,0.9,0,6,4,3,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U082,19.0,LOW,No Significant Threat,0.9,0,7,3,1,LOW risk,Threat indicators: elevated process execution (7).,Predicted next stage: No Significant Threat with 90% confidence.
+U037,18.5,LOW,No Significant Threat,0.9,0,5,4,5,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U014,18.0,LOW,No Significant Threat,0.9,0,4,6,2,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U083,18.0,LOW,No Significant Threat,0.9,0,4,6,2,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U073,18.0,LOW,No Significant Threat,0.9,0,7,2,2,LOW risk,Threat indicators: elevated process execution (7).,Predicted next stage: No Significant Threat with 90% confidence.
+U033,18.0,LOW,No Significant Threat,0.9,0,4,6,2,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U090,18.0,LOW,No Significant Threat,0.9,0,5,4,4,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U017,17.0,LOW,No Significant Threat,0.9,0,5,4,2,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U065,17.0,LOW,No Significant Threat,0.9,0,5,4,2,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U043,16.5,LOW,No Significant Threat,0.9,0,4,5,2,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U051,16.5,LOW,No Significant Threat,0.9,0,5,3,4,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U081,15.5,LOW,No Significant Threat,0.9,0,3,6,1,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U076,15.5,LOW,No Significant Threat,0.9,0,5,3,2,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U018,15.5,LOW,No Significant Threat,0.9,0,4,4,3,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U049,15.0,LOW,No Significant Threat,0.9,0,3,5,3,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U072,15.0,LOW,No Significant Threat,0.9,0,4,3,5,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U020,15.0,LOW,No Significant Threat,0.9,0,4,4,2,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U044,14.5,LOW,No Significant Threat,0.9,0,1,7,4,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U026,14.5,LOW,No Significant Threat,0.9,0,5,2,3,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U067,14.5,LOW,No Significant Threat,0.9,0,5,2,3,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U077,14.0,LOW,No Significant Threat,0.9,0,2,6,2,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U084,14.0,LOW,No Significant Threat,0.9,0,5,2,2,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U047,14.0,LOW,No Significant Threat,0.9,0,4,2,6,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U061,13.5,LOW,No Significant Threat,0.9,0,3,4,3,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U057,13.0,LOW,No Significant Threat,0.9,0,4,2,4,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U058,13.0,LOW,No Significant Threat,0.9,0,2,4,6,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U059,13.0,LOW,No Significant Threat,0.9,0,3,4,2,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U012,13.0,LOW,No Significant Threat,0.9,0,2,5,3,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U016,13.0,LOW,No Significant Threat,0.9,0,4,2,4,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U071,12.5,LOW,No Significant Threat,0.9,0,2,4,5,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U036,12.5,LOW,No Significant Threat,0.9,0,3,3,4,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U034,12.5,LOW,No Significant Threat,0.9,0,5,1,2,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U023,12.5,LOW,No Significant Threat,0.9,0,3,3,4,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U011,12.5,LOW,No Significant Threat,0.9,0,3,3,4,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U060,12.0,LOW,No Significant Threat,0.9,0,4,2,2,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U056,12.0,LOW,No Significant Threat,0.9,0,3,3,3,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U013,12.0,LOW,No Significant Threat,0.9,0,4,2,2,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U078,12.0,LOW,No Significant Threat,0.9,0,3,3,3,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U070,12.0,LOW,No Significant Threat,0.9,0,2,4,4,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U024,12.0,LOW,No Significant Threat,0.9,0,3,3,3,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U027,12.0,LOW,No Significant Threat,0.9,0,4,2,2,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U021,12.0,LOW,No Significant Threat,0.9,0,3,3,3,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U022,12.0,LOW,No Significant Threat,0.9,0,4,2,2,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U038,12.0,LOW,No Significant Threat,0.9,0,4,2,2,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U039,11.5,LOW,No Significant Threat,0.9,0,2,4,3,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U069,11.5,LOW,No Significant Threat,0.9,0,5,1,0,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U045,11.5,LOW,No Significant Threat,0.9,0,2,3,6,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U004,11.5,LOW,No Significant Threat,0.9,0,2,4,3,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U006,11.5,LOW,No Significant Threat,0.9,0,5,1,0,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U025,11.5,LOW,No Significant Threat,0.9,0,2,3,6,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U063,11.5,LOW,No Significant Threat,0.9,0,2,3,6,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U066,11.5,LOW,No Significant Threat,0.9,0,2,4,3,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U079,11.0,LOW,No Significant Threat,0.9,0,1,5,3,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U035,11.0,LOW,No Significant Threat,0.9,0,3,2,4,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U050,11.0,LOW,No Significant Threat,0.9,0,2,3,5,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U007,11.0,LOW,No Significant Threat,0.9,0,2,4,2,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U008,11.0,LOW,No Significant Threat,0.9,0,2,4,2,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U041,10.5,LOW,No Significant Threat,0.9,0,1,4,5,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U009,10.5,LOW,No Significant Threat,0.9,0,2,4,1,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U087,10.5,LOW,No Significant Threat,0.9,0,4,0,5,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U053,10.5,LOW,No Significant Threat,0.9,0,3,2,3,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U068,10.0,LOW,No Significant Threat,0.9,0,2,3,3,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U019,10.0,LOW,No Significant Threat,0.9,0,2,3,3,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U064,9.5,LOW,No Significant Threat,0.9,0,2,3,2,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U086,9.5,LOW,No Significant Threat,0.9,0,3,1,4,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U005,9.5,LOW,No Significant Threat,0.9,0,2,2,5,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U030,9.5,LOW,No Significant Threat,0.9,0,3,2,1,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U003,9.5,LOW,No Significant Threat,0.9,0,2,3,2,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U089,9.0,LOW,No Significant Threat,0.9,0,4,0,2,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U062,9.0,LOW,No Significant Threat,0.9,0,1,3,5,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U080,9.0,LOW,No Significant Threat,0.9,0,1,3,5,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U055,9.0,LOW,No Significant Threat,0.9,0,3,1,3,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U042,9.0,LOW,No Significant Threat,0.9,0,0,5,3,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U054,8.5,LOW,No Significant Threat,0.9,0,0,5,2,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U028,8.5,LOW,No Significant Threat,0.9,0,2,2,3,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U031,8.5,LOW,No Significant Threat,0.9,0,2,1,6,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U010,8.5,LOW,No Significant Threat,0.9,0,3,1,2,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U088,8.5,LOW,No Significant Threat,0.9,0,1,3,4,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U001,8.5,LOW,No Significant Threat,0.9,0,2,2,3,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U048,8.0,LOW,No Significant Threat,0.9,0,2,2,2,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U032,8.0,LOW,No Significant Threat,0.9,0,2,1,5,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U029,8.0,LOW,No Significant Threat,0.9,0,1,3,3,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U052,7.5,LOW,No Significant Threat,0.9,0,1,2,5,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U075,7.5,LOW,No Significant Threat,0.9,0,1,3,2,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U074,7.0,LOW,No Significant Threat,0.9,0,1,3,1,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U040,6.5,LOW,No Significant Threat,0.9,0,1,2,3,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U046,5.0,LOW,No Significant Threat,0.9,0,1,1,3,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.
+U085,4.5,LOW,No Significant Threat,0.9,0,1,1,2,LOW risk,No significant behavioral threat indicators.,Predicted next stage: No Significant Threat with 90% confidence.

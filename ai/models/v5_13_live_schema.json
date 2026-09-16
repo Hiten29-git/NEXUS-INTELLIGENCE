@@ -1,0 +1,14 @@
+{
+  "version": "V5.13",
+  "features": [
+    "process_execution_frequency",
+    "network_connection_frequency",
+    "unique_processes",
+    "unique_destinations",
+    "ioc_matches"
+  ],
+  "training_windows": 217,
+  "contamination": 0.05,
+  "model": "IsolationForest",
+  "scaler": "RobustScaler"
+}

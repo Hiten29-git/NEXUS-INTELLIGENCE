@@ -1,0 +1,17 @@
+{
+  "model_version": "V3.2",
+  "total_windows": 232,
+  "training_windows": 185,
+  "holdout_windows": 47,
+  "feature_count": 16,
+  "train_ratio": 0.8,
+  "random_state": 42,
+  "if_fpr_percent": 10.6383,
+  "lof_fpr_percent": 10.6383,
+  "robust_fpr_percent": 12.766,
+  "ensemble_fpr_percent": 10.6383,
+  "if_threshold": -0.7190751037843901,
+  "lof_threshold": -7129118912.198442,
+  "robust_threshold": 6.0,
+  "ensemble_rule": "2_of_3"
+}

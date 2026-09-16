@@ -1,0 +1,16 @@
+process_execution_frequency
+network_connection_frequency
+unique_processes
+unique_destinations
+unique_destination_ports
+process_burst
+network_burst
+process_diversity
+destination_diversity
+process_network_ratio
+new_processes_ratio
+new_destination_ratio
+established_ratio
+syn_sent_ratio
+closed_ratio
+ioc_matches

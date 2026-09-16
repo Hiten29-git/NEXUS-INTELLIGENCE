@@ -1,0 +1,3 @@
+if_threshold=-0.7190751037843901
+lof_threshold=-7129118912.198442
+robust_threshold=6.0

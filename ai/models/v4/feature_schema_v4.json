@@ -1,0 +1,21 @@
+{
+  "version": "V4",
+  "window_type": "60-second behavioral window",
+  "features": [
+    "process_execution_frequency",
+    "network_connection_frequency",
+    "unique_processes",
+    "unique_destinations",
+    "unique_destination_ports",
+    "process_burst",
+    "network_burst",
+    "process_diversity",
+    "destination_diversity",
+    "process_network_ratio",
+    "new_processes_ratio",
+    "new_destination_ratio"
+  ],
+  "training_windows": 232,
+  "contamination": 0.05,
+  "constant_features_removed": []
+}

@@ -1,0 +1,21 @@
+{
+  "version": "V5",
+  "detector": "Temporal + Ensemble",
+  "benchmark_windows": 472,
+  "true_positive": 15,
+  "true_negative": 228,
+  "false_positive": 4,
+  "false_negative": 225,
+  "accuracy": 0.514831,
+  "precision": 0.789474,
+  "recall": 0.0625,
+  "f1": 0.11583,
+  "false_positive_rate": 0.017241,
+  "false_negative_rate": 0.9375,
+  "weights": {
+    "isolation_forest": 0.55,
+    "behavior": 0.25,
+    "temporal_persistence": 0.2
+  },
+  "alert_threshold": 60
+}

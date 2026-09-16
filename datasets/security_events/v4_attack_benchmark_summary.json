@@ -1,0 +1,18 @@
+{
+  "version": "4.0",
+  "dataset": "datasets/security_events/v3_4_attack_dataset.csv",
+  "training_windows": 232,
+  "benchmark_windows": 472,
+  "true_positive": 143,
+  "true_negative": 220,
+  "false_positive": 12,
+  "false_negative": 97,
+  "accuracy": 0.769068,
+  "precision": 0.922581,
+  "recall": 0.595833,
+  "f1": 0.724051,
+  "false_positive_rate": 0.051724,
+  "false_negative_rate": 0.404167,
+  "detector": "V4 Isolation Forest",
+  "feature_count": 12
+}
