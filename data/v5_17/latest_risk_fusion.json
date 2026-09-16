@@ -1,0 +1,21 @@
+{
+  "version": "V5.17",
+  "risk_score": 63.03,
+  "severity": "HIGH",
+  "action": "INVESTIGATE",
+  "components": {
+    "ai_anomaly": 35.53,
+    "adaptive_baseline": 65.62,
+    "network": 100.0,
+    "process": 28.0,
+    "ioc": 0.0,
+    "temporal_persistence": 92.0
+  },
+  "persistence_cap": 60.0,
+  "reasons": [
+    "AI anomaly signal is elevated (35.53/100).",
+    "Behavior deviates significantly from the adaptive baseline (65.62/100).",
+    "Network activity is elevated (100.00/100).",
+    "Suspicious activity persists across multiple windows (92.00/100)."
+  ]
+}

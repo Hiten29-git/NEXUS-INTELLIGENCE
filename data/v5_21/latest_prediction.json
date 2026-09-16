@@ -1,0 +1,50 @@
+{
+  "version": "V5.21",
+  "generated_at": "2026-09-15T20:31:45.464289",
+  "prediction": {
+    "predicted_stage": "Lateral Movement",
+    "prediction_score": 85,
+    "confidence": "HIGH",
+    "reason": "Persistent elevated network activity can indicate movement between systems.",
+    "current_stage": "Persistence / Continued Activity",
+    "risk_score": 63.03,
+    "decision": "CONTAIN",
+    "candidate_stages": [
+      {
+        "stage": "Lateral Movement",
+        "score": 85,
+        "reason": "Persistent elevated network activity can indicate movement between systems."
+      },
+      {
+        "stage": "Command & Control",
+        "score": 75,
+        "reason": "Strong persistent network activity may indicate continued external communication."
+      },
+      {
+        "stage": "Discovery",
+        "score": 55,
+        "reason": "Elevated network/process activity may precede discovery behavior."
+      },
+      {
+        "stage": "Collection",
+        "score": 50,
+        "reason": "Persistent anomalous behavior may precede collection of valuable resources."
+      },
+      {
+        "stage": "Persistence",
+        "score": 50,
+        "reason": "Repeated anomalous behavior across time windows increases persistence likelihood."
+      },
+      {
+        "stage": "Credential Access",
+        "score": 15,
+        "reason": "Behavioral deviation and process activity may indicate preparation for credential-focused activity."
+      }
+    ],
+    "monitoring_recommendations": [
+      "Monitor connections to previously unseen destinations.",
+      "Correlate source and destination entities.",
+      "Increase scrutiny of repeated network activity."
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "version": "V5.18",
+  "risk_score": 63.03,
+  "severity": "HIGH",
+  "decision": "CONTAIN",
+  "response_level": "HIGH",
+  "source": "V5.17 Risk Fusion",
+  "components": {
+    "ai_anomaly": 35.53,
+    "adaptive_baseline": 65.62,
+    "network": 100.0,
+    "process": 28.0,
+    "ioc": 0.0,
+    "temporal_persistence": 92.0
+  },
+  "reasons": [
+    "High fused risk indicates coordinated suspicious activity."
+  ],
+  "recommendations": [
+    "Require SOC analyst investigation.",
+    "Consider temporary containment after human approval.",
+    "Inspect suspicious processes and network destinations.",
+    "Review unusually high network activity and destinations.",
+    "Review persistent anomalous behavior across time windows.",
+    "Compare activity against the learned behavioral baseline."
+  ],
+  "human_approval_required": true
+}

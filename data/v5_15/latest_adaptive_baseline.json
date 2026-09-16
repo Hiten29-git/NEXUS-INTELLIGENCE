@@ -1,0 +1,66 @@
+{
+  "version": "V5.15",
+  "baseline_windows": 217,
+  "features": {
+    "process_execution_frequency": 8.0,
+    "network_connection_frequency": 84.0,
+    "unique_processes": 2.0,
+    "unique_destinations": 18.0,
+    "ioc_matches": 0.0
+  },
+  "feature_analysis": {
+    "process_execution_frequency": {
+      "current": 8.0,
+      "median": 1.0,
+      "q1": 1.0,
+      "q3": 3.0,
+      "iqr": 2.0,
+      "deviation": 3.5,
+      "score": 87.5
+    },
+    "network_connection_frequency": {
+      "current": 84.0,
+      "median": 0.0,
+      "q1": 0.0,
+      "q3": 1.0,
+      "iqr": 1.0,
+      "deviation": 84.0,
+      "score": 100.0
+    },
+    "unique_processes": {
+      "current": 2.0,
+      "median": 1.0,
+      "q1": 1.0,
+      "q3": 2.0,
+      "iqr": 1.0,
+      "deviation": 1.0,
+      "score": 25.0
+    },
+    "unique_destinations": {
+      "current": 18.0,
+      "median": 0.0,
+      "q1": 0.0,
+      "q3": 1.0,
+      "iqr": 1.0,
+      "deviation": 18.0,
+      "score": 100.0
+    },
+    "ioc_matches": {
+      "current": 0.0,
+      "median": 0.0,
+      "q1": 0.0,
+      "q3": 0.0,
+      "iqr": 0.0,
+      "deviation": 0.0,
+      "score": 0.0
+    }
+  },
+  "adaptive_risk_score": 65.62,
+  "severity": "HIGH",
+  "action": "INVESTIGATE",
+  "reasons": [
+    "process_execution_frequency is significantly above the learned baseline (8 vs median 1).",
+    "network_connection_frequency is significantly above the learned baseline (84 vs median 0).",
+    "unique_destinations is significantly above the learned baseline (18 vs median 0)."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "timestamp": "2026-09-13T18:17:21.570340+00:00",
+  "version": "V5.7",
+  "source_versions": [
+    "V5.5",
+    "V5.6"
+  ],
+  "base_risk": 4.46,
+  "base_severity": "LOW",
+  "attack_stage": "NO_SIGNIFICANT_THREAT",
+  "prediction_confidence": 90.0,
+  "graph_risk": 4.46,
+  "graph_severity": "LOW",
+  "nodes": [
+    {
+      "id": "user",
+      "type": "USER",
+      "label": "Observed User"
+    },
+    {
+      "id": "device",
+      "type": "DEVICE",
+      "label": "Observed Device"
+    }
+  ],
+  "edges": [
+    {
+      "source": "user",
+      "target": "device",
+      "relationship": "USES"
+    }
+  ],
+  "explanation": [
+    "Base contextual risk from V5.5: 4.46/100.",
+    "No significant attack-stage propagation applied.",
+    "Graph risk calculated as 4.46/100."
+  ]
+}

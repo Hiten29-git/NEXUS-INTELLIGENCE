@@ -1,0 +1,19 @@
+{
+  "timestamp": "2026-09-14T06:09:42.807515+00:00",
+  "version": "V5.10.1",
+  "source_version": "V5.10",
+  "risk_score": 6.92,
+  "severity": "LOW",
+  "temporal_correlations": 100,
+  "graph_nodes": 188,
+  "graph_edges": 3317,
+  "explanation": [
+    "100 temporal correlations analyzed.",
+    "16 high-confidence temporal relationships.",
+    "0 IoC-linked correlations.",
+    "22 unique destinations observed.",
+    "Temporal risk score calculated as 6.92/100."
+  ],
+  "method": "Calibrated temporal risk",
+  "causal_claim": false
+}

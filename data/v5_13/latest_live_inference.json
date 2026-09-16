@@ -1,0 +1,15 @@
+{
+  "version": "V5.13",
+  "window_start": "2026-09-11T13:05:32.295424+00:00",
+  "status": "NORMAL",
+  "severity": "LOW",
+  "raw_isolation_score": 0.1595,
+  "anomaly_score": 34.05,
+  "features": {
+    "process_execution_frequency": 0.0,
+    "network_connection_frequency": 1.0,
+    "unique_processes": 1.0,
+    "unique_destinations": 1.0,
+    "ioc_matches": 0.0
+  }
+}

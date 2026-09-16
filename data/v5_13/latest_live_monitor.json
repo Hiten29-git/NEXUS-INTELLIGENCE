@@ -1,0 +1,17 @@
+{
+  "timestamp": "2026-09-14T15:48:54.304873+00:00",
+  "window_seconds": 60,
+  "events_in_window": 149,
+  "features": {
+    "process_execution_frequency": 8,
+    "network_connection_frequency": 84,
+    "unique_processes": 2,
+    "unique_destinations": 18,
+    "ioc_matches": 0
+  },
+  "status": "ANOMALY",
+  "raw_isolation_score": -0.155319,
+  "anomaly_score": 35.53,
+  "severity": "LOW",
+  "model": "V5.13_LIVE_ISOLATION_FOREST"
+}

@@ -1,0 +1,79 @@
+{
+  "version": "V5.19",
+  "source_decision": {
+    "risk_score": 63.03,
+    "severity": "HIGH",
+    "decision": "CONTAIN"
+  },
+  "attack_path": {
+    "status": "MULTI_STAGE_ACTIVITY",
+    "path_score": 68.37,
+    "severity": "HIGH",
+    "stages": [
+      "Initial Access / Suspicious Activity",
+      "Execution",
+      "Discovery / Command & Control",
+      "Persistence / Continued Activity"
+    ]
+  },
+  "graph": {
+    "nodes": [
+      {
+        "type": "USER",
+        "label": "Current User"
+      },
+      {
+        "type": "BEHAVIOR",
+        "label": "Anomalous Behavior"
+      },
+      {
+        "type": "PROCESS",
+        "label": "Suspicious Process Activity"
+      },
+      {
+        "type": "NETWORK",
+        "label": "Multiple Network Destinations"
+      },
+      {
+        "type": "TEMPORAL",
+        "label": "Persistent Suspicious Activity"
+      }
+    ],
+    "edges": [
+      {
+        "source": "Current User",
+        "target": "Anomalous Behavior",
+        "relation": "EXHIBITS"
+      },
+      {
+        "source": "Current User",
+        "target": "Suspicious Process Activity",
+        "relation": "EXECUTES"
+      },
+      {
+        "source": "Current User",
+        "target": "Multiple Network Destinations",
+        "relation": "CONNECTS_TO"
+      },
+      {
+        "source": "Current User",
+        "target": "Persistent Suspicious Activity",
+        "relation": "PERSISTS_ACROSS"
+      }
+    ]
+  },
+  "signals": {
+    "ai_anomaly": 35.53,
+    "adaptive_baseline": 65.62,
+    "network": 100.0,
+    "process": 28.0,
+    "ioc": 0.0,
+    "temporal_persistence": 92.0
+  },
+  "reasons": [
+    "Behavior deviates from the learned baseline.",
+    "Elevated process activity was observed.",
+    "Elevated network activity and multiple destinations were observed.",
+    "Suspicious activity persists across multiple time windows."
+  ]
+}

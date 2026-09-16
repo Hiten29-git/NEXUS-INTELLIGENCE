@@ -1,0 +1,13 @@
+{
+  "version": "V5.16",
+  "windows_analyzed": 217,
+  "suspicious_windows": 10,
+  "maximum_streak": 1,
+  "persistence_score": 92.0,
+  "severity": "CRITICAL",
+  "action": "ESCALATE",
+  "threshold": 60.0,
+  "reasons": [
+    "10 anomalous windows detected."
+  ]
+}

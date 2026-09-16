@@ -1,0 +1,54 @@
+{
+  "timestamp": "2026-09-14T06:09:42.831446+00:00",
+  "version": "V5.11.1",
+  "decision": {
+    "risk_score": 6.92,
+    "severity": "LOW",
+    "action": "MONITOR",
+    "corroborating_signals": 1
+  },
+  "risk_layers": {
+    "calibrated_risk": 6.92,
+    "calibrated_severity": "LOW",
+    "graph_risk": 4.46,
+    "graph_severity": "LOW"
+  },
+  "temporal_intelligence": {
+    "correlations": 100,
+    "high_confidence_relationships": 0,
+    "ioc_linked_correlations": 0
+  },
+  "graph_intelligence": {
+    "nodes": 916,
+    "edges": 916
+  },
+  "attack_intelligence": {
+    "stage": "NO_SIGNIFICANT_THREAT",
+    "confidence": 90.0,
+    "path_nodes": 2,
+    "path_edges": 1
+  },
+  "evidence": [
+    "1 attack-path relationships identified."
+  ],
+  "explanation": [
+    "Calibrated behavioral risk: 6.92/100.",
+    "Supporting graph risk: 4.46/100.",
+    "Temporal correlations: 100.",
+    "High-confidence relationships: 0.",
+    "Graph size: 916 nodes / 916 edges.",
+    "Attack stage: NO_SIGNIFICANT_THREAT (90.0% confidence).",
+    "NEXUS identified 1 corroborating security signal(s).",
+    "Final action: MONITOR."
+  ],
+  "pipeline": [
+    "REAL_TIME_EVENTS",
+    "AI_ANOMALY_DETECTION",
+    "BEHAVIORAL_RISK",
+    "DYNAMIC_GRAPH",
+    "TEMPORAL_CORRELATION",
+    "CALIBRATED_RISK",
+    "ATTACK_STAGE_PREDICTION",
+    "UNIFIED_SECURITY_DECISION"
+  ]
+}

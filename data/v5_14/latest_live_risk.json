@@ -1,0 +1,26 @@
+{
+  "timestamp": "2026-09-14T16:08:38.451459+00:00",
+  "version": "V5.14",
+  "risk_score": 40.19,
+  "severity": "MEDIUM",
+  "action": "INVESTIGATE",
+  "components": {
+    "ai_anomaly_score": 35.53,
+    "process_score": 28.0,
+    "network_score": 100.0,
+    "ioc_score": 0.0
+  },
+  "features": {
+    "process_execution_frequency": 8,
+    "network_connection_frequency": 84,
+    "unique_processes": 2,
+    "unique_destinations": 18,
+    "ioc_matches": 0
+  },
+  "reasons": [
+    "AI anomaly score is elevated (35.53/100).",
+    "Elevated network activity (84 connections).",
+    "Multiple network destinations observed (18)."
+  ],
+  "source": "V5.13_REAL_TIME_MONITOR"
+}

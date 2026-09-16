@@ -1,0 +1,75 @@
+{
+  "version": "V5.20",
+  "generated_at": "2026-09-15T20:29:54.856875",
+  "source": {
+    "risk_score": 63.03,
+    "severity": "HIGH",
+    "decision": "CONTAIN"
+  },
+  "explainability": {
+    "confidence": "MEDIUM-HIGH",
+    "top_signals": [
+      {
+        "signal": "network",
+        "score": 100.0,
+        "contribution": 20.0
+      },
+      {
+        "signal": "temporal_persistence",
+        "score": 92.0,
+        "contribution": 13.8
+      },
+      {
+        "signal": "adaptive_baseline",
+        "score": 65.62,
+        "contribution": 13.12
+      },
+      {
+        "signal": "ai_anomaly",
+        "score": 35.53,
+        "contribution": 7.11
+      },
+      {
+        "signal": "process",
+        "score": 28.0,
+        "contribution": 4.2
+      }
+    ],
+    "attack_path": [
+      {
+        "order": 1,
+        "stage": "Initial Access / Suspicious Activity"
+      },
+      {
+        "order": 2,
+        "stage": "Execution"
+      },
+      {
+        "order": 3,
+        "stage": "Discovery / Command & Control"
+      },
+      {
+        "order": 4,
+        "stage": "Persistence / Continued Activity"
+      }
+    ],
+    "reasons": [
+      "Behavior deviates from the learned baseline.",
+      "Elevated process activity was observed.",
+      "Elevated network activity and multiple destinations were observed.",
+      "Suspicious activity persists across multiple time windows."
+    ],
+    "human_explanation": [
+      "NEXUS assigned a HIGH severity with a risk score of 63.03/100.",
+      "The strongest contributing signal was network with a score of 100.00/100.",
+      "Attack-path analysis classified the activity as MULTI_STAGE_ACTIVITY.",
+      "The observed activity spans 4 security stage(s).",
+      "The correlated security graph contains 5 nodes and 4 relationships.",
+      "The resulting response decision is CONTAIN."
+    ]
+  },
+  "graph_summary": {
+    "nodes": 5,
+    "relationships": 4
+  }
+}

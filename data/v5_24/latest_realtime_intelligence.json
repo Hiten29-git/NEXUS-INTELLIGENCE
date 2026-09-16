@@ -1,0 +1,135 @@
+{
+  "version": "V5.24",
+  "generated_at": "2026-09-16T13:23:28.106230+00:00",
+  "mode": "REAL_TIME",
+  "window": {
+    "seconds": 60,
+    "events_analyzed": 293,
+    "latest_event_timestamp": "2026-09-15T16:35:16.947023+00:00"
+  },
+  "entity": {
+    "users": [
+      "macbookairm4"
+    ],
+    "devices": [
+      "Hitens-Macbook.local"
+    ]
+  },
+  "overall_security_assessment": {
+    "combined_threat_score": 33.0,
+    "threat_level": "MEDIUM"
+  },
+  "live_intelligence": {
+    "live_threat_score": 55.0,
+    "live_severity": "MEDIUM",
+    "reasons": [
+      "High live network connection activity observed.",
+      "High network destination diversity observed.",
+      "Strong network burst activity detected."
+    ]
+  },
+  "activity_fingerprint": {
+    "available": true,
+    "drift_score": 72.38,
+    "status": "STRONG_DEVIATION",
+    "current_fingerprint_id": "f591c1b9ef4f83ba",
+    "baseline_fingerprint_id": "ee0749d7b6fd7743",
+    "new_processes": [],
+    "new_destinations": [],
+    "new_ports": [],
+    "new_resources": [],
+    "categorical_deviation_score": 86.98,
+    "numerical_deviation_score": 50.49
+  },
+  "live_features": {
+    "events": 293,
+    "process_execution_frequency": 0,
+    "network_connection_frequency": 169,
+    "file_access_frequency": 0,
+    "login_frequency": 0,
+    "unique_processes": 0,
+    "unique_destinations": 13,
+    "unique_destination_ports": 0,
+    "process_burst": 0,
+    "network_burst": 100,
+    "process_diversity": 0,
+    "destination_diversity": 100,
+    "process_activity": 0,
+    "network_activity": 100,
+    "process_network_ratio": 0.0,
+    "ioc_matches": 0,
+    "ioc_score": 0
+  },
+  "observed_entities": {
+    "processes": [],
+    "network_destinations": [
+      "104.18.32.47.443",
+      "104.18.39.85.443",
+      "148.113.9.58.443",
+      "17.242.13.4.5223",
+      "172.64.148.171.443",
+      "4.145.79.80.443",
+      "4.213.25.240.443",
+      "4.213.25.241.443",
+      "57.144.169.33.443",
+      "8.8.4.4.443",
+      "fe80::1868:c0ad:.64259",
+      "fe80::1bfe:816a:.1024",
+      "fe80::1bfe:816a:.1026"
+    ],
+    "destination_ports": [],
+    "source_ips": []
+  },
+  "attack_intelligence": {
+    "current_stage": "Discovery",
+    "predicted_stage": "Discovery",
+    "prediction_score": 100.0
+  },
+  "explainability": {
+    "confidence": "LOW",
+    "top_signals": [
+      {
+        "signal": "network_activity",
+        "score": 100.0
+      },
+      {
+        "signal": "destination_diversity",
+        "score": 100.0
+      },
+      {
+        "signal": "network_burst",
+        "score": 100.0
+      },
+      {
+        "signal": "process_activity",
+        "score": 0.0
+      },
+      {
+        "signal": "process_diversity",
+        "score": 0.0
+      }
+    ],
+    "reasons": [
+      "Live telemetry contributed to the security assessment.",
+      "Live network connection telemetry was observed.",
+      "Next-stage analysis indicates elevated likelihood of Discovery."
+    ]
+  },
+  "response": {
+    "action": "INVESTIGATE",
+    "priority": "MEDIUM",
+    "human_approval_required": true,
+    "automatic_destructive_action": false,
+    "operating_mode": "RECOMMENDATION_ONLY"
+  },
+  "historical_pipeline": {
+    "v5_23_available": true,
+    "previous_combined_score": 0.0,
+    "previous_risk_score": 0.0
+  },
+  "safety": {
+    "human_approval_required": true,
+    "automatic_destructive_action": false,
+    "mode": "RECOMMENDATION_ONLY"
+  }
+}
