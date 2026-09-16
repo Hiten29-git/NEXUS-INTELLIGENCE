@@ -1,20 +1,61 @@
+# =========================
 # Python
+# =========================
 __pycache__/
-*.pyc
+*.py[cod]
+*.pyo
 .venv/
+venv/
+.env
 
+# =========================
 # macOS
+# =========================
 .DS_Store
 
-# Runtime telemetry
+# =========================
+# NEXUS runtime telemetry
+# =========================
 data/live/*.jsonl
 data/live/*.log
 
-# Local generated datasets
+# =========================
+# Generated datasets
+# =========================
 datasets/security_events/live_training_windows.csv
 
-# Generated model binaries
+# =========================
+# Generated ML model binaries
+# =========================
 *.joblib
 
-# Temporary files
-*.save
+# =========================
+# Node / Frontend
+# =========================
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+# =========================
+# Logs
+# =========================
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# =========================
+# Editor
+# =========================
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
