@@ -1,0 +1,15 @@
+{
+  "event_id": "M2-TEST-001",
+  "timestamp": "2026-09-16T13:00:00Z",
+  "user_id": "U001",
+  "device_id": "PC001",
+  "event_type": "PROCESS_EXECUTION",
+  "source_ip": "10.0.0.10",
+  "source_port": 49152,
+  "destination_ip": "10.0.0.50",
+  "destination_port": 443,
+  "process": "powershell.exe",
+  "parent_process": "explorer.exe",
+  "resource": "https://10.0.0.50/api",
+  "ioc_match": true
+}

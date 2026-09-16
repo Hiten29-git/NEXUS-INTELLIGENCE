@@ -1,0 +1,128 @@
+[
+  {
+    "user_id": "U001",
+    "device_id": "PC001",
+    "process_id": "P001",
+    "anomaly_reasons": [
+      "IOC_LINKED_ACTIVITY",
+      "DESTINATION_ACTIVITY"
+    ],
+    "connected_servers": [
+      "SERVER02"
+    ],
+    "destinations": [
+      "10.0.0.20"
+    ],
+    "event_ids": [
+      "E001"
+    ],
+    "ioc_linked_nodes": [
+      "10.0.0.50"
+    ]
+  },
+  {
+    "user_id": "U001",
+    "device_id": "PC001",
+    "process_id": "P004",
+    "anomaly_reasons": [
+      "IOC_LINKED_ACTIVITY",
+      "DESTINATION_ACTIVITY"
+    ],
+    "connected_servers": [
+      "SERVER02"
+    ],
+    "destinations": [
+      "10.0.0.30"
+    ],
+    "event_ids": [
+      "E004"
+    ],
+    "ioc_linked_nodes": [
+      "10.0.0.60"
+    ]
+  },
+  {
+    "user_id": "U001",
+    "device_id": "PC001",
+    "process_id": "P005",
+    "anomaly_reasons": [
+      "IOC_LINKED_ACTIVITY",
+      "DESTINATION_ACTIVITY"
+    ],
+    "connected_servers": [
+      "SERVER02"
+    ],
+    "destinations": [
+      "10.0.0.40"
+    ],
+    "event_ids": [
+      "E005"
+    ],
+    "ioc_linked_nodes": [
+      "10.0.0.70"
+    ]
+  },
+  {
+    "user_id": "U001",
+    "device_id": "PC001",
+    "process_id": "P006",
+    "anomaly_reasons": [
+      "IOC_LINKED_ACTIVITY",
+      "DESTINATION_ACTIVITY"
+    ],
+    "connected_servers": [
+      "SERVER02"
+    ],
+    "destinations": [
+      "10.0.0.50"
+    ],
+    "event_ids": [
+      "E006"
+    ],
+    "ioc_linked_nodes": [
+      "10.0.0.80"
+    ]
+  },
+  {
+    "user_id": "U001",
+    "device_id": "PC001",
+    "process_id": "P007",
+    "anomaly_reasons": [
+      "IOC_LINKED_ACTIVITY",
+      "DESTINATION_ACTIVITY"
+    ],
+    "connected_servers": [
+      "SERVER02"
+    ],
+    "destinations": [
+      "10.0.0.60"
+    ],
+    "event_ids": [
+      "E007"
+    ],
+    "ioc_linked_nodes": [
+      "10.0.0.90"
+    ]
+  },
+  {
+    "user_id": "U001",
+    "device_id": "PC001",
+    "process_id": "powershell.exe",
+    "anomaly_reasons": [
+      "IOC_LINKED_ACTIVITY",
+      "DESTINATION_ACTIVITY"
+    ],
+    "connected_servers": [
+      "SERVER02"
+    ],
+    "destinations": [
+      "10.0.0.50"
+    ],
+    "event_ids": [
+      "M2-TEST-001"
+    ],
+    "ioc_linked_nodes": [
+      "10.0.0.50"
+    ]
+  }
+]

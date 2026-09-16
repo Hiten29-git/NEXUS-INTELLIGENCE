@@ -1,0 +1,50 @@
+﻿{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "NEXUS Common Event Schema",
+  "type": "object",
+  "properties": {
+    "timestamp": {
+      "type": "string"
+    },
+    "user_id": {
+      "type": "string"
+    },
+    "device_id": {
+      "type": "string"
+    },
+    "event_type": {
+      "type": "string"
+    },
+    "source_ip": {
+      "type": ["string", "null"]
+    },
+    "source_port": {
+      "type": ["integer", "null"]
+    },
+    "destination_ip": {
+      "type": ["string", "null"]
+    },
+    "destination_port": {
+      "type": ["integer", "null"]
+    },
+    "process": {
+      "type": ["string", "null"]
+    },
+    "parent_process": {
+      "type": ["string", "null"]
+    },
+    "resource": {
+      "type": ["string", "null"]
+    },
+    "ioc_match": {
+      "type": ["boolean", "null"]
+    }
+  },
+  "required": [
+    "timestamp",
+    "user_id",
+    "device_id",
+    "event_type"
+  ],
+  "additionalProperties": true
+}

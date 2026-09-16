@@ -1,0 +1,203 @@
+[
+  {
+    "user_id": "U001",
+    "attack_path": [
+      "User:U001",
+      "Device:PC001",
+      "Process:P001",
+      "Server:SERVER02",
+      "Database:DATABASE01"
+    ],
+    "evidence_count": 1,
+    "sensitive_asset_reached": true,
+    "ioc_linked_nodes": [
+      "10.0.0.50"
+    ],
+    "path_length": 4,
+    "graph_features": {
+      "connected_server_count": 1,
+      "new_destination_count": 1,
+      "ioc_linked_entity_count": 1,
+      "sensitive_assets_reached": 2,
+      "entities_in_path": 5
+    }
+  },
+  {
+    "user_id": "U001",
+    "attack_path": [
+      "User:U001",
+      "Device:PC001",
+      "Process:P002",
+      "Server:SERVER02",
+      "Database:DATABASE01"
+    ],
+    "evidence_count": 1,
+    "sensitive_asset_reached": true,
+    "ioc_linked_nodes": [],
+    "path_length": 4,
+    "graph_features": {
+      "connected_server_count": 1,
+      "new_destination_count": 0,
+      "ioc_linked_entity_count": 0,
+      "sensitive_assets_reached": 2,
+      "entities_in_path": 5
+    }
+  },
+  {
+    "user_id": "U001",
+    "attack_path": [
+      "User:U001",
+      "Device:PC001",
+      "Process:P003",
+      "Server:SERVER02",
+      "Database:DATABASE01"
+    ],
+    "evidence_count": 1,
+    "sensitive_asset_reached": true,
+    "ioc_linked_nodes": [],
+    "path_length": 4,
+    "graph_features": {
+      "connected_server_count": 1,
+      "new_destination_count": 0,
+      "ioc_linked_entity_count": 0,
+      "sensitive_assets_reached": 2,
+      "entities_in_path": 5
+    }
+  },
+  {
+    "user_id": "U001",
+    "attack_path": [
+      "User:U001",
+      "Device:PC001",
+      "Process:P004",
+      "Server:SERVER02",
+      "Database:DATABASE01"
+    ],
+    "evidence_count": 1,
+    "sensitive_asset_reached": true,
+    "ioc_linked_nodes": [
+      "10.0.0.60"
+    ],
+    "path_length": 4,
+    "graph_features": {
+      "connected_server_count": 1,
+      "new_destination_count": 1,
+      "ioc_linked_entity_count": 1,
+      "sensitive_assets_reached": 2,
+      "entities_in_path": 5
+    }
+  },
+  {
+    "user_id": "U001",
+    "attack_path": [
+      "User:U001",
+      "Device:PC001",
+      "Process:P005",
+      "Server:SERVER02",
+      "Database:DATABASE01"
+    ],
+    "evidence_count": 1,
+    "sensitive_asset_reached": true,
+    "ioc_linked_nodes": [
+      "10.0.0.70"
+    ],
+    "path_length": 4,
+    "graph_features": {
+      "connected_server_count": 1,
+      "new_destination_count": 1,
+      "ioc_linked_entity_count": 1,
+      "sensitive_assets_reached": 2,
+      "entities_in_path": 5
+    }
+  },
+  {
+    "user_id": "U001",
+    "attack_path": [
+      "User:U001",
+      "Device:PC001",
+      "Process:P006",
+      "Server:SERVER02",
+      "Database:DATABASE01"
+    ],
+    "evidence_count": 1,
+    "sensitive_asset_reached": true,
+    "ioc_linked_nodes": [
+      "10.0.0.80"
+    ],
+    "path_length": 4,
+    "graph_features": {
+      "connected_server_count": 1,
+      "new_destination_count": 1,
+      "ioc_linked_entity_count": 1,
+      "sensitive_assets_reached": 2,
+      "entities_in_path": 5
+    }
+  },
+  {
+    "user_id": "U001",
+    "attack_path": [
+      "User:U001",
+      "Device:PC001",
+      "Process:P007",
+      "Server:SERVER02",
+      "Database:DATABASE01"
+    ],
+    "evidence_count": 1,
+    "sensitive_asset_reached": true,
+    "ioc_linked_nodes": [
+      "10.0.0.90"
+    ],
+    "path_length": 4,
+    "graph_features": {
+      "connected_server_count": 1,
+      "new_destination_count": 1,
+      "ioc_linked_entity_count": 1,
+      "sensitive_assets_reached": 2,
+      "entities_in_path": 5
+    }
+  },
+  {
+    "user_id": "U001",
+    "attack_path": [
+      "User:U001",
+      "Device:PC001",
+      "Process:P008",
+      "Server:SERVER02",
+      "Database:DATABASE01"
+    ],
+    "evidence_count": 1,
+    "sensitive_asset_reached": true,
+    "ioc_linked_nodes": [],
+    "path_length": 4,
+    "graph_features": {
+      "connected_server_count": 1,
+      "new_destination_count": 0,
+      "ioc_linked_entity_count": 0,
+      "sensitive_assets_reached": 2,
+      "entities_in_path": 5
+    }
+  },
+  {
+    "user_id": "U001",
+    "attack_path": [
+      "User:U001",
+      "Device:PC001",
+      "Process:powershell.exe",
+      "Server:SERVER02",
+      "Database:DATABASE01"
+    ],
+    "evidence_count": 1,
+    "sensitive_asset_reached": true,
+    "ioc_linked_nodes": [
+      "10.0.0.50"
+    ],
+    "path_length": 4,
+    "graph_features": {
+      "connected_server_count": 1,
+      "new_destination_count": 1,
+      "ioc_linked_entity_count": 1,
+      "sensitive_assets_reached": 2,
+      "entities_in_path": 5
+    }
+  }
+]
