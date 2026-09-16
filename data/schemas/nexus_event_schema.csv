@@ -1,0 +1,14 @@
+field_name,data_type,required,description
+event_id,string,YES,Unique event identifier
+timestamp,datetime,YES,UTC event timestamp
+user_id,string,YES,User associated with event
+device_id,string,YES,Device associated with event
+event_type,string,YES,Type of security event
+source_ip,string,NO,Source IP address
+source_port,integer,NO,Source network port
+destination_ip,string,NO,Destination IP address
+destination_port,integer,NO,Destination network port
+process,string,NO,Process involved in event
+parent_process,string,NO,Parent process
+resource,string,NO,Resource accessed
+ioc_match,boolean,YES,Whether event matched an IoC

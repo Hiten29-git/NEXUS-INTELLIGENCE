@@ -1,0 +1,11 @@
+scenario_id,stage,event_type,process,source_ip,destination_ip,resource,ioc,severity,next_stage
+SCN-001,Initial Access,LOGIN,login.exe,192.168.56.10,,,False,MEDIUM,Execution
+SCN-001,Execution,PROCESS_EXECUTION,powershell.exe,192.168.56.10,,,False,HIGH,Command-and-Control
+SCN-001,Command-and-Control,NETWORK_CONNECTION,,192.168.56.10,203.0.113.10,,True,HIGH,Discovery
+SCN-001,Discovery,PROCESS_EXECUTION,netstat.exe,192.168.56.10,,,False,MEDIUM,Credential Access
+SCN-001,Credential Access,RESOURCE_ACCESS,,192.168.56.10,,credentials.db,True,CRITICAL,Exfiltration
+SCN-001,Exfiltration,NETWORK_CONNECTION,,192.168.56.10,203.0.113.10,sensitive_data,True,CRITICAL,Impact
+SCN-002,Initial Access,LOGIN,login.exe,192.168.56.20,,,False,MEDIUM,Execution
+SCN-002,Execution,PROCESS_EXECUTION,evil_demo.exe,192.168.56.20,,,True,HIGH,Command-and-Control
+SCN-002,Command-and-Control,NETWORK_CONNECTION,,192.168.56.20,198.51.100.25,,True,HIGH,Resource Access
+SCN-002,Resource Access,RESOURCE_ACCESS,,192.168.56.20,,patient_records,True,CRITICAL,Exfiltration

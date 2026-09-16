@@ -1,0 +1,7 @@
+ioc_id,type,value,source,confidence,first_seen,last_seen,threat_name,severity,description
+IOC-001,ip,203.0.113.10,NEXUS-SYNTHETIC,0.90,2026-09-16T09:57:29.951197+00:00,2026-09-16T09:57:29.951197+00:00,Demo C2 Server,HIGH,Synthetic C2 endpoint
+IOC-002,ip,198.51.100.25,NEXUS-SYNTHETIC,0.90,2026-09-16T09:57:29.951197+00:00,2026-09-16T09:57:29.951197+00:00,Demo Malicious Host,HIGH,Synthetic malicious host
+IOC-003,domain,malicious-demo.test,NEXUS-SYNTHETIC,0.95,2026-09-16T09:57:29.951197+00:00,2026-09-16T09:57:29.951197+00:00,Demo C2 Domain,CRITICAL,Synthetic C2 domain
+IOC-004,domain,phishing-demo.test,NEXUS-SYNTHETIC,0.80,2026-09-16T09:57:29.951197+00:00,2026-09-16T09:57:29.951197+00:00,Demo Phishing Domain,MEDIUM,Synthetic phishing domain
+IOC-005,hash,DEMO_HASH_001,NEXUS-SYNTHETIC,0.90,2026-09-16T09:57:29.951197+00:00,2026-09-16T09:57:29.951197+00:00,Demo Malware,HIGH,Synthetic malware hash
+IOC-006,process,evil_demo.exe,NEXUS-SYNTHETIC,0.90,2026-09-16T09:57:29.951197+00:00,2026-09-16T09:57:29.951197+00:00,Demo Suspicious Process,HIGH,Synthetic suspicious process

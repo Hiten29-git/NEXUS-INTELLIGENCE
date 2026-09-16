@@ -1,0 +1,7 @@
+ioc_type,ioc_value,threat_name,severity,description
+ip,203.0.113.10,Demo C2 Server,HIGH,Synthetic C2 endpoint
+ip,198.51.100.25,Demo Malicious Host,HIGH,Synthetic malicious host
+domain,malicious-demo.test,Demo C2 Domain,CRITICAL,Synthetic C2 domain
+domain,phishing-demo.test,Demo Phishing Domain,MEDIUM,Synthetic phishing domain
+hash,DEMO_HASH_001,Demo Malware,HIGH,Synthetic malware hash
+process,evil_demo.exe,Demo Suspicious Process,HIGH,Synthetic suspicious process

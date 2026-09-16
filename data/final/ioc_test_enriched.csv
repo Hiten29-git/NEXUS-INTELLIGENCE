@@ -1,0 +1,4 @@
+event_id,timestamp,user_id,device_id,event_type,source_ip,source_port,destination_ip,destination_port,process,parent_process,resource,ioc_match,matched_ioc_id,matched_ioc_type,matched_ioc_value,threat_name,ioc_severity,ioc_confidence,ioc_source
+IOC-TEST-001,2026-09-16T10:02:42.120659+00:00,TEST_USER,TEST_DEVICE,PROCESS_EXECUTION,192.168.56.10,,,,evil_demo.exe,explorer.exe,PID:9999,True,IOC-006,process,evil_demo.exe,Demo Suspicious Process,HIGH,0.90,NEXUS-SYNTHETIC
+IOC-TEST-002,2026-09-16T10:02:42.120659+00:00,TEST_USER,TEST_DEVICE,NETWORK_CONNECTION,192.168.56.10,51500,203.0.113.10,443,demo_client.exe,explorer.exe,,True,IOC-001,ip,203.0.113.10,Demo C2 Server,HIGH,0.90,NEXUS-SYNTHETIC
+IOC-TEST-003,2026-09-16T10:02:42.120659+00:00,TEST_USER,TEST_DEVICE,NETWORK_CONNECTION,192.168.56.10,51501,198.51.100.25,443,demo_client.exe,explorer.exe,,True,IOC-002,ip,198.51.100.25,Demo Malicious Host,HIGH,0.90,NEXUS-SYNTHETIC
