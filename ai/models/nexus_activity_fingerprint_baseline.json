@@ -1,13 +1,4 @@
 {
-  "schema_version": "1.1",
-  "window_count": 237,
-  "event_types": [
-    "FILE_ACTIVITY",
-    "NETWORK_CONNECTION",
-    "PROCESS_EXECUTION",
-    "SYSTEM_ACTIVITY",
-    "USER_SESSION"
-  ],
   "processes": [
     "ABAssistantService",
     "AddressBookManager",
@@ -132,7 +123,7 @@
     "fe80:b::1c50:6f10:2713:5170",
     "fe80:f::1076:5ff:feba:e178"
   ],
-  "destination_ports": [
+  "ports": [
     "1024",
     "1025",
     "123",
@@ -312,49 +303,44 @@
     15,
     16
   ],
-  "numeric": {
+  "features": {
     "events_per_minute": {
-      "mean": 24.6329,
-      "std": 74.5061,
-      "min": 1.0,
-      "max": 353.0
+      "mean": 24.632911,
+      "std": 74.506055,
+      "samples": 237
     },
     "processes_per_minute": {
-      "mean": 2.6034,
-      "std": 3.6299,
-      "min": 0.0,
-      "max": 27.0
+      "mean": 2.603376,
+      "std": 3.629879,
+      "samples": 237
     },
     "network_per_minute": {
-      "mean": 13.6245,
-      "std": 44.5858,
-      "min": 0.0,
-      "max": 225.0
+      "mean": 13.624473,
+      "std": 44.585838,
+      "samples": 237
     },
     "unique_processes": {
-      "mean": 2.0042,
-      "std": 2.3067,
-      "min": 0.0,
-      "max": 26.0
+      "mean": 2.004219,
+      "std": 2.306655,
+      "samples": 237
     },
     "unique_destinations": {
-      "mean": 1.8523,
-      "std": 4.4237,
-      "min": 0.0,
-      "max": 21.0
+      "mean": 1.852321,
+      "std": 4.423676,
+      "samples": 237
     },
     "unique_ports": {
-      "mean": 0.3333,
-      "std": 0.6709,
-      "min": 0.0,
-      "max": 3.0
+      "mean": 0.333333,
+      "std": 0.670873,
+      "samples": 237
     },
     "ioc_matches": {
       "mean": 0.0,
       "std": 0.0,
-      "min": 0.0,
-      "max": 0.0
+      "samples": 237
     }
   },
-  "fingerprint_hash": "ee0749d7b6fd7743"
+  "fingerprint_id": "ee0749d7b6fd7743",
+  "sample_count": 237,
+  "created_at": "2026-09-16T12:28:55.624291+00:00Z"
 }

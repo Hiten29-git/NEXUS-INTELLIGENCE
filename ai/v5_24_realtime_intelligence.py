@@ -34,6 +34,7 @@ ROOT = Path(__file__).resolve().parents[1]
 LIVE_EVENTS_FILE = ROOT / "data" / "live" / "live_events.jsonl"
 
 V23_FILE = ROOT / "data" / "v5_23" / "latest_unified_intelligence.json"
+FINGERPRINT_BASELINE_FILE = ROOT / "ai" / "models" / "nexus_activity_fingerprint_baseline.json"
 
 OUTPUT_DIR = ROOT / "data" / "v5_24"
 OUTPUT_FILE = OUTPUT_DIR / "latest_realtime_intelligence.json"
@@ -1183,6 +1184,60 @@ def extract_destination_data(features):
     }
 
 
+
+# ============================================================
+# ACTIVITY FINGERPRINT INTELLIGENCE
+# ============================================================
+
+def get_activity_fingerprint(events):
+    """
+    Compare current live behavior against the historical
+    NEXUS behavioral activity fingerprint baseline.
+    """
+
+    if not events:
+        return {
+            "available": False,
+            "drift_score": 0.0,
+            "status": "NO_CURRENT_FINGERPRINT",
+            "new_processes": [],
+            "new_destinations": [],
+            "new_ports": [],
+            "new_resources": [],
+            "categorical_similarity": {},
+            "numeric_deviation": {},
+        }
+
+    baseline = load_json(
+        FINGERPRINT_BASELINE_FILE
+    )
+
+    if not baseline:
+        return {
+            "available": False,
+            "drift_score": 0.0,
+            "status": "NO_BASELINE",
+            "new_processes": [],
+            "new_destinations": [],
+            "new_ports": [],
+            "new_resources": [],
+            "categorical_similarity": {},
+            "numeric_deviation": {},
+        }
+
+    current = build_fingerprint(
+        events,
+        WINDOW_SECONDS
+    )
+
+    result = compare_fingerprint(
+        current,
+        baseline
+    )
+
+    return result
+
+
 # ============================================================
 # MAIN RESULT
 # ============================================================
@@ -1203,6 +1258,14 @@ def build_result():
     )
 
     features = extract_live_features(
+        recent_events
+    )
+
+    # --------------------------------------------------------
+    # Behavioral activity fingerprint
+    # --------------------------------------------------------
+
+    fingerprint = get_activity_fingerprint(
         recent_events
     )
 
@@ -1369,6 +1432,63 @@ def build_result():
                 live_reasons,
         },
 
+        "activity_fingerprint": {
+            "available":
+                fingerprint.get("available", False),
+
+            "drift_score":
+                fingerprint.get("drift_score", 0.0),
+
+            "status":
+                fingerprint.get("status", "UNKNOWN"),
+
+            "current_fingerprint_id":
+                fingerprint.get(
+                    "current_fingerprint_id"
+                ),
+
+            "baseline_fingerprint_id":
+                fingerprint.get(
+                    "baseline_fingerprint_id"
+                ),
+
+            "new_processes":
+                fingerprint.get(
+                    "new_processes",
+                    []
+                ),
+
+            "new_destinations":
+                fingerprint.get(
+                    "new_destinations",
+                    []
+                ),
+
+            "new_ports":
+                fingerprint.get(
+                    "new_ports",
+                    []
+                ),
+
+            "new_resources":
+                fingerprint.get(
+                    "new_resources",
+                    []
+                ),
+
+            "categorical_deviation_score":
+                fingerprint.get(
+                    "categorical_deviation_score",
+                    0.0
+                ),
+
+            "numerical_deviation_score":
+                fingerprint.get(
+                    "numerical_deviation_score",
+                    0.0
+                ),
+        },
+
         "live_features": {
             key: value
             for key, value in features.items()
@@ -1465,6 +1585,10 @@ def print_result(result):
         "live_intelligence"
     ]
 
+    fingerprint = result[
+        "activity_fingerprint"
+    ]
+
     features = result[
         "live_features"
     ]
@@ -1548,6 +1672,55 @@ def print_result(result):
         f"IOC Matches           : "
         f"{features.get('ioc_matches', 0)}"
     )
+
+    print()
+    print("BEHAVIORAL ACTIVITY FINGERPRINT")
+    print("-" * 64)
+
+    print(
+        f"Fingerprint Available : "
+        f"{fingerprint['available']}"
+    )
+
+    print(
+        f"Fingerprint Drift     : "
+        f"{fingerprint['drift_score']:.2f}/100"
+    )
+
+    print(
+        f"Fingerprint Status    : "
+        f"{fingerprint['status']}"
+    )
+
+    print(
+        f"New Processes         : "
+        f"{len(fingerprint['new_processes'])}"
+    )
+
+    print(
+        f"New Destinations      : "
+        f"{len(fingerprint['new_destinations'])}"
+    )
+
+    print(
+        f"New Ports             : "
+        f"{len(fingerprint['new_ports'])}"
+    )
+
+    print(
+        f"New Resources         : "
+        f"{len(fingerprint['new_resources'])}"
+    )
+
+    if fingerprint["new_processes"]:
+        print("New Processes:")
+        for item in fingerprint["new_processes"][:5]:
+            print(f"  - {item}")
+
+    if fingerprint["new_destinations"]:
+        print("New Destinations:")
+        for item in fingerprint["new_destinations"][:5]:
+            print(f"  - {item}")
 
     print()
     print("ATTACK INTELLIGENCE")

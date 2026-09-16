@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 from ai.activity_fingerprint import (
     build_fingerprint,
     build_baseline,
-    save_baseline,
+    save_fingerprint,
 )
 
 LIVE_FILE = "data/live/live_events.jsonl"
@@ -68,7 +68,7 @@ fingerprints = [
 
 baseline = build_baseline(fingerprints)
 
-save_baseline(baseline)
+save_fingerprint("ai/models/nexus_activity_fingerprint_baseline.json", baseline)
 
 print("=" * 60)
 print("NEXUS BEHAVIORAL ACTIVITY FINGERPRINT BASELINE")
@@ -77,10 +77,10 @@ print(f"Events         : {len(events)}")
 print(f"60-sec windows : {len(windows)}")
 print(f"Processes      : {len(baseline['processes'])}")
 print(f"Destinations   : {len(baseline['destinations'])}")
-print(f"Ports          : {len(baseline['destination_ports'])}")
+print(f"Ports          : {len(baseline['ports'])}")
 print(f"Resources      : {len(baseline['resources'])}")
 print(f"Active hours   : {baseline['active_hours']}")
-print(f"Fingerprint ID : {baseline['fingerprint_hash']}")
+print(f"Fingerprint ID : {baseline['fingerprint_id']}")
 print()
 print("Saved:")
 print("ai/models/nexus_activity_fingerprint_baseline.json")

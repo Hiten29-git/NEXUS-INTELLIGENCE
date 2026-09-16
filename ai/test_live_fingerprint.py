@@ -3,7 +3,7 @@ from datetime import datetime, timedelta
 
 from ai.activity_fingerprint import (
     build_fingerprint,
-    load_baseline,
+    load_fingerprint,
     compare_fingerprint,
 )
 
@@ -44,7 +44,7 @@ current_events = [
     if start <= datetime.fromisoformat(e["timestamp"]) <= latest
 ]
 
-baseline = load_baseline()
+baseline = load_fingerprint("ai/models/nexus_activity_fingerprint_baseline.json")
 
 current = build_fingerprint(
     current_events,
@@ -67,12 +67,12 @@ print(f"Events in window  : {len(current_events)}")
 print()
 print(
     f"Fingerprint drift : "
-    f"{result['fingerprint_drift_score']}/100"
+    f"{result['drift_score']}/100"
 )
 
 print(
     f"Status            : "
-    f"{result['fingerprint_status']}"
+    f"{result['status']}"
 )
 
 print()
