@@ -1,0 +1,6 @@
+intel_id,ioc_type,ioc_value,threat_name,category,severity,confidence,source,description
+TI-001,process,evil_demo.exe,Demo Suspicious Process,Execution,HIGH,0.95,NEXUS-SYNTHETIC,Synthetic process indicator for defensive testing
+TI-002,ip,203.0.113.10,Demo Command Server,Command-and-Control,HIGH,0.90,NEXUS-SYNTHETIC,Synthetic documentation IP for simulation
+TI-003,domain,malicious-demo.test,Demo Malicious Domain,Command-and-Control,HIGH,0.92,NEXUS-SYNTHETIC,Synthetic domain for defensive testing
+TI-004,hash,DEMO_HASH_001,Demo Malware Hash,Malware,HIGH,0.97,NEXUS-SYNTHETIC,Synthetic hash identifier
+TI-005,ip,198.51.100.25,Demo Suspicious Host,Network,HIGH,0.88,NEXUS-SYNTHETIC,Synthetic documentation IP for simulation

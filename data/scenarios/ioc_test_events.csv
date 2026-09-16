@@ -1,0 +1,4 @@
+event_id,timestamp,user_id,device_id,event_type,source_ip,source_port,destination_ip,destination_port,process,parent_process,resource,ioc_match
+IOC-TEST-001,2026-09-16T10:02:42.120659+00:00,TEST_USER,TEST_DEVICE,PROCESS_EXECUTION,192.168.56.10,,,,evil_demo.exe,explorer.exe,PID:9999,False
+IOC-TEST-002,2026-09-16T10:02:42.120659+00:00,TEST_USER,TEST_DEVICE,NETWORK_CONNECTION,192.168.56.10,51500,203.0.113.10,443,demo_client.exe,explorer.exe,,False
+IOC-TEST-003,2026-09-16T10:02:42.120659+00:00,TEST_USER,TEST_DEVICE,NETWORK_CONNECTION,192.168.56.10,51501,198.51.100.25,443,demo_client.exe,explorer.exe,,False

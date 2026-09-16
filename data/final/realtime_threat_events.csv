@@ -1,0 +1,10 @@
+detected_at,timestamp,user_id,device_id,event_type,process,source_ip,destination_ip,destination_port,resource,ioc_match,ioc_type,ioc_value,threat_name,severity,description
+2026-09-09T15:41:52.394149+00:00,RT-TEST-001,Asus,KISHAN,PROCESS_EXECUTION,,evil_demo.exe,192.168.56.1,,False,True,process,evil_demo.exe,Demo Suspicious Process,HIGH,Synthetic suspicious process
+2026-09-09T15:48:44.484506+00:00,2026-09-09T15:50:00+00:00,Asus,KISHAN,PROCESS_EXECUTION,evil_demo.exe,192.168.56.1,,,PID=9999,True,process,evil_demo.exe,Demo Suspicious Process,HIGH,Synthetic suspicious process
+2026-09-09T15:49:14.649139+00:00,2026-09-09T15:50:00+00:00,Asus,KISHAN,PROCESS_EXECUTION,evil_demo.exe,192.168.56.1,,,PID=9999,True,process,evil_demo.exe,Demo Suspicious Process,HIGH,Synthetic suspicious process
+2026-09-09T15:49:16.796702+00:00,2026-09-09T15:50:00+00:00,Asus,KISHAN,PROCESS_EXECUTION,evil_demo.exe,192.168.56.1,,,PID=9999,True,process,evil_demo.exe,Demo Suspicious Process,HIGH,Synthetic suspicious process
+2026-09-09T15:50:01.123150+00:00,2026-09-09T15:50:00+00:00,Asus,KISHAN,PROCESS_EXECUTION,evil_demo.exe,192.168.56.1,,,PID=9999,True,process,evil_demo.exe,Demo Suspicious Process,HIGH,Synthetic suspicious process
+2026-09-09T15:50:01.126231+00:00,2026-09-09T15:55:00+00:00,Asus,KISHAN,PROCESS_EXECUTION,evil_demo.exe,192.168.56.1,,,PID=9999,True,process,evil_demo.exe,Demo Suspicious Process,HIGH,Synthetic suspicious process
+2026-09-09T16:01:53.771702+00:00,2026-09-09T15:55:00+00:00,Asus,KISHAN,PROCESS_EXECUTION,evil_demo.exe,192.168.56.1,,,PID=9999,True,process,evil_demo.exe,Demo Suspicious Process,HIGH,Synthetic suspicious process
+2026-09-09T16:04:49.881788+00:00,2026-09-09T15:55:00+00:00,Asus,KISHAN,PROCESS_EXECUTION,evil_demo.exe,192.168.56.1,,,PID=9999,True,process,evil_demo.exe,Demo Suspicious Process,HIGH,Synthetic suspicious process
+2026-09-09T16:08:47.615119+00:00,2026-09-09T15:55:00+00:00,Asus,KISHAN,PROCESS_EXECUTION,evil_demo.exe,192.168.56.1,,,PID=9999,True,process,evil_demo.exe,Demo Suspicious Process,HIGH,Synthetic suspicious process
