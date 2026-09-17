@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from backend.routes.blast_radius import router as blast_radius_router
 from backend.routes.metrics import router as metrics_router
 from backend.routes.alerts import router as alerts_router
 from backend.routes.graph import router as graph_router
@@ -106,3 +107,8 @@ def startup_event():
     print("API: http://127.0.0.1:8000")
     print("Docs: http://127.0.0.1:8000/docs")
     print("=" * 60)
+
+app.include_router(
+    blast_radius_router,
+    prefix="/api/v1"
+)

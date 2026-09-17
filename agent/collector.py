@@ -1,3 +1,4 @@
+import re
 import os
 import json
 import time
@@ -276,73 +277,125 @@ def collect_network():
 # ============================================================
 
 def collect_network_fallback():
+    """
+    macOS netstat fallback.
+
+    Normalizes endpoint values such as:
+        104.18.39.85.443
+        127.0.0.1.7687
+
+    into:
+        destination_ip = 104.18.39.85
+        destination_port = 443
+
+    Connection state is not stored as a resource because
+    ESTABLISHED/CLOSE_WAIT/etc. are telemetry metadata,
+    not security resources.
+    """
 
     try:
-
         result = subprocess.run(
-            [
-                "netstat",
-                "-an"
-            ],
+            ["netstat", "-an"],
             capture_output=True,
             text=True,
-            timeout=3
+            timeout=5
         )
 
-        lines = result.stdout.splitlines()
+        if result.returncode != 0:
+            return
 
-        count = 0
-
-        for line in lines:
-
-            line = line.strip()
-
-            if not line:
-                continue
-
-            if (
-                "ESTABLISHED"
-                not in line
-                and "SYN_SENT"
-                not in line
-                and "CLOSE_WAIT"
-                not in line
-            ):
-                continue
+        for line in result.stdout.splitlines():
 
             parts = line.split()
 
             if len(parts) < 4:
                 continue
 
-            destination = parts[-2]
+            # Look for lines containing an endpoint.
+            endpoint = None
 
-            event = base_event(
-                "NETWORK_CONNECTION"
+            for part in parts:
+                if "." in part or ":" in part:
+                    endpoint = part
+
+            if not endpoint:
+                continue
+
+            endpoint = endpoint.strip()
+
+            destination_ip = None
+            destination_port = None
+
+            # -----------------------------------------
+            # IPv4: 104.18.39.85.443
+            # -----------------------------------------
+            ipv4_match = re.match(
+                r"^(\d{1,3}(?:\.\d{1,3}){3})\.(\d+)$",
+                endpoint
             )
 
+            if ipv4_match:
+                destination_ip = ipv4_match.group(1)
+                destination_port = int(ipv4_match.group(2))
+
+            # -----------------------------------------
+            # IPv4 already containing colon
+            # Example: 127.0.0.1:5173
+            # -----------------------------------------
+            elif re.match(
+                r"^(\d{1,3}(?:\.\d{1,3}){3}):(\d+)$",
+                endpoint
+            ):
+                match = re.match(
+                    r"^(\d{1,3}(?:\.\d{1,3}){3}):(\d+)$",
+                    endpoint
+                )
+
+                destination_ip = match.group(1)
+                destination_port = int(match.group(2))
+
+            # -----------------------------------------
+            # IPv6 with port
+            # -----------------------------------------
+            elif endpoint.count(":") >= 2:
+
+                ipv6_parts = endpoint.rsplit(".", 1)
+
+                if len(ipv6_parts) == 2 and ipv6_parts[1].isdigit():
+                    destination_ip = ipv6_parts[0]
+                    destination_port = int(ipv6_parts[1])
+
+                else:
+                    ipv6_parts = endpoint.rsplit(":", 1)
+
+                    if (
+                        len(ipv6_parts) == 2
+                        and ipv6_parts[1].isdigit()
+                    ):
+                        destination_ip = ipv6_parts[0]
+                        destination_port = int(ipv6_parts[1])
+
+            if not destination_ip:
+                continue
+
+            event = base_event("NETWORK_CONNECTION")
+
             event.update({
-                "destination_ip":
-                    destination,
-                "resource":
-                    parts[-1]
-                    if parts
-                    else None
+                "source_ip": None,
+                "source_port": None,
+                "destination_ip": destination_ip,
+                "destination_port": destination_port,
+                "protocol": "TCP",
+                "process": None,
+                "parent_process": None,
+                "resource": None,
+                "ioc_match": False
             })
 
             write_event(event)
 
-            count += 1
-
-        if count:
-            print(
-                f"[NETWORK-FALLBACK] "
-                f"{count} connections"
-            )
-
     except Exception:
-        pass
-
+        return
 
 # ============================================================
 # SYSTEM TELEMETRY

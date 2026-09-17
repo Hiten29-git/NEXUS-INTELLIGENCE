@@ -795,181 +795,296 @@ def _build_explainability(
 # FINGERPRINT
 # ============================================================
 
-def _calculate_fingerprint(
-    events: List[Dict[str, Any]],
-) -> Dict[str, Any]:
-
+def _calculate_fingerprint(events):
     """
-    Lightweight live baseline-deviation indicator.
+    Compare the current live window against the saved baseline.
 
-    This deliberately does not claim statistical confidence.
-    It provides a prototype deviation signal for the dashboard.
+    Only security-relevant categorical telemetry is compared.
+    Endpoint metadata such as PID values, connection states and
+    synthetic resources are excluded because they create artificial
+    baseline drift.
     """
 
-    if not events:
+    baseline_path = Path(
+        "ai/models/nexus_v25_live_baseline.json"
+    )
+
+    if not baseline_path.exists():
         return {
             "available": False,
             "drift_score": 0.0,
-            "status": "NO_DATA",
+            "status": "BASELINE_UNAVAILABLE",
             "categorical_deviation_score": 0.0,
             "numerical_deviation_score": 0.0,
             "new_processes": [],
             "new_destinations": [],
             "new_ports": [],
-            "new_resources": [],
+            "new_resources": []
         }
 
-    processes = set()
-    destinations = set()
-    ports = set()
-    resources = set()
+    try:
+        with open(baseline_path, "r") as f:
+            baseline = json.load(f)
+    except Exception:
+        return {
+            "available": False,
+            "drift_score": 0.0,
+            "status": "BASELINE_UNAVAILABLE",
+            "categorical_deviation_score": 0.0,
+            "numerical_deviation_score": 0.0,
+            "new_processes": [],
+            "new_destinations": [],
+            "new_ports": [],
+            "new_resources": []
+        }
 
-    for event in events:
+    def clean_value(value):
+        if value is None:
+            return None
 
-        process = event.get(
-            "process"
-        )
+        value = str(value).strip()
 
-        destination = event.get(
-            "destination_ip"
-        )
+        if not value:
+            return None
 
-        port = event.get(
-            "destination_port"
-        )
+        return value
 
-        resource = event.get(
-            "resource"
-        )
+    def valid_resource(value):
+        value = clean_value(value)
 
-        if process:
-            processes.add(
-                str(process)
-            )
+        if not value:
+            return False
 
-        if destination:
-            destinations.add(
-                str(destination)
-            )
+        upper = value.upper()
 
-        if port is not None:
-            ports.add(
-                str(port)
-            )
+        ignored = {
+            "ESTABLISHED",
+            "CLOSE_WAIT",
+            "TIME_WAIT",
+            "SYN_SENT",
+            "SYN_RECV",
+            "FIN_WAIT1",
+            "FIN_WAIT2",
+            "LAST_ACK",
+            "LISTEN",
+            "CLOSING",
+            "NONE",
+            "SYSTEM",
+            "ACTIVE_SESSIONS",
+            "USER_FILE_METADATA"
+        }
 
-        if resource:
-            resources.add(
-                str(resource)
-            )
+        if upper in ignored:
+            return False
 
-    # The baseline artifact is used only as contextual information.
-    baseline_path = (
-        BASE_DIR
-        / "ai"
-        / "models"
-        / "nexus_v25_live_baseline.json"
-    )
+        if value.lower().startswith("pid:"):
+            return False
 
-    baseline = {}
+        return True
 
-    if baseline_path.exists():
+    def valid_destination(value):
+        value = clean_value(value)
 
-        try:
-            with baseline_path.open(
-                "r",
-                encoding="utf-8",
-            ) as file:
-                baseline = json.load(file)
+        if not value:
+            return False
 
-        except (
-            OSError,
-            json.JSONDecodeError,
-        ):
-            baseline = {}
+        # Ignore localhost/link-local telemetry for fingerprint novelty.
+        if value in {
+            "127.0.0.1",
+            "::1"
+        }:
+            return False
+
+        if value.lower().startswith("fe80:"):
+            return False
+
+        return True
+
+    # -------------------------------------------------
+    # CURRENT WINDOW
+    # -------------------------------------------------
+
+    current_processes = {
+        clean_value(e.get("process"))
+        for e in events
+        if clean_value(e.get("process"))
+    }
+
+    current_destinations = {
+        clean_value(e.get("destination_ip"))
+        for e in events
+        if valid_destination(e.get("destination_ip"))
+    }
+
+    current_ports = {
+        str(e.get("destination_port"))
+        for e in events
+        if e.get("destination_port") is not None
+    }
+
+    current_resources = {
+        clean_value(e.get("resource"))
+        for e in events
+        if valid_resource(e.get("resource"))
+    }
+
+    # -------------------------------------------------
+    # BASELINE
+    # -------------------------------------------------
 
     baseline_processes = set(
-        str(x)
-        for x in baseline.get(
-            "processes",
-            [],
-        )
+        baseline.get("processes", [])
+        or baseline.get("known_processes", [])
+        or []
     )
 
     baseline_destinations = set(
-        str(x)
-        for x in baseline.get(
-            "destinations",
-            [],
-        )
+        baseline.get("destinations", [])
+        or baseline.get("known_destinations", [])
+        or []
     )
 
-    baseline_ports = set(
+    baseline_ports = {
         str(x)
-        for x in baseline.get(
-            "ports",
-            [],
+        for x in (
+            baseline.get("ports", [])
+            or baseline.get("known_ports", [])
+            or []
         )
-    )
+    }
 
     baseline_resources = set(
-        str(x)
-        for x in baseline.get(
-            "resources",
-            [],
-        )
+        baseline.get("resources", [])
+        or baseline.get("known_resources", [])
+        or []
     )
 
+    # Clean baseline too because it may contain legacy telemetry.
+    baseline_processes = {
+        x for x in baseline_processes
+        if clean_value(x)
+    }
+
+    baseline_destinations = {
+        x for x in baseline_destinations
+        if valid_destination(x)
+    }
+
+    baseline_resources = {
+        x for x in baseline_resources
+        if valid_resource(x)
+    }
+
+    # -------------------------------------------------
+    # NOVELTY
+    # -------------------------------------------------
+
     new_processes = sorted(
-        processes - baseline_processes
+        current_processes - baseline_processes
     )
 
     new_destinations = sorted(
-        destinations - baseline_destinations
+        current_destinations - baseline_destinations
     )
 
     new_ports = sorted(
-        ports - baseline_ports
+        current_ports - baseline_ports
     )
 
     new_resources = sorted(
-        resources - baseline_resources
+        current_resources - baseline_resources
     )
 
-    categorical_total = (
-        len(new_processes)
-        + len(new_destinations)
-        + len(new_ports)
-        + len(new_resources)
+    # -------------------------------------------------
+    # CATEGORICAL DEVIATION
+    # -------------------------------------------------
+
+    process_deviation = (
+        len(new_processes) / max(len(current_processes), 1)
+    ) * 100
+
+    destination_deviation = (
+        len(new_destinations) / max(len(current_destinations), 1)
+    ) * 100
+
+    port_deviation = (
+        len(new_ports) / max(len(current_ports), 1)
+    ) * 100
+
+    resource_deviation = (
+        len(new_resources) / max(len(current_resources), 1)
+    ) * 100
+
+    categorical_score = (
+        process_deviation * 0.30
+        + destination_deviation * 0.35
+        + port_deviation * 0.20
+        + resource_deviation * 0.15
     )
 
-    categorical_score = _clamp(
-        min(
-            100.0,
-            categorical_total * 15.0,
+    categorical_score = round(
+        min(max(categorical_score, 0.0), 100.0),
+        2
+    )
+
+    # -------------------------------------------------
+    # NUMERICAL DEVIATION
+    # -------------------------------------------------
+
+    numerical_score = 0.0
+
+    current_count = len(events)
+
+    baseline_event_count = (
+        baseline.get("events")
+        or baseline.get("total_events")
+        or baseline.get("event_count")
+        or 0
+    )
+
+    try:
+        baseline_event_count = float(baseline_event_count)
+    except Exception:
+        baseline_event_count = 0.0
+
+    if baseline_event_count > 0:
+
+        event_delta = abs(
+            current_count - baseline_event_count
+        ) / baseline_event_count * 100
+
+        numerical_score = min(
+            event_delta,
+            100.0
         )
+
+    numerical_score = round(
+        numerical_score,
+        2
     )
 
-    numerical_score = _clamp(
-        min(
-            100.0,
-            (
-                len(events)
-                / 300.0
-            ) * 100.0,
-        )
-    )
+    # -------------------------------------------------
+    # FINAL DRIFT
+    # -------------------------------------------------
 
-    drift_score = _clamp(
+    drift_score = (
         categorical_score * 0.60
         + numerical_score * 0.40
+    )
+
+    drift_score = round(
+        min(max(drift_score, 0.0), 100.0),
+        2
     )
 
     if drift_score >= 70:
         status = "STRONG_DEVIATION"
     elif drift_score >= 40:
         status = "MODERATE_DEVIATION"
+    elif drift_score >= 15:
+        status = "MILD_DEVIATION"
     else:
-        status = "NORMAL_RANGE"
+        status = "BASELINE_CONSISTENT"
 
     return {
         "available": True,
@@ -980,9 +1095,8 @@ def _calculate_fingerprint(
         "new_processes": new_processes,
         "new_destinations": new_destinations,
         "new_ports": new_ports,
-        "new_resources": new_resources,
+        "new_resources": new_resources
     }
-
 
 # ============================================================
 # GRAPH
@@ -1019,7 +1133,6 @@ def _get_graph_evidence() -> Dict[str, Any]:
         "graph_evidence_score": 0.0,
         "evidence_status": "OBSERVED_CONTEXT_ONLY",
     }
-
 
 # ============================================================
 # FUSION
