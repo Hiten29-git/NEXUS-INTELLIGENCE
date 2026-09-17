@@ -13,6 +13,7 @@ import AttackGraph from '../components/graph/AttackGraph';
 import GraphControls from '../components/graph/GraphControls';
 import GraphLegend from '../components/graph/GraphLegend';
 import NodeDetailPanel from '../components/graph/NodeDetailPanel';
+import BlastRadiusPanel from '../components/graph/BlastRadiusPanel';
 
 export const AttackGraphPage = () => {
   const [elements, setElements] = useState([]);
@@ -545,18 +546,25 @@ export const AttackGraphPage = () => {
         {/* Inspector */}
         <div className="lg:col-span-1 h-full min-h-[300px]">
 
-          <NodeDetailPanel
-            selectedNode={selectedNode}
-            selectedEdge={selectedEdge}
-            onClose={() => {
-              setSelectedNode(null);
-              setSelectedEdge(null);
-            }}
-            onSimulateIsolate={
-              handleSimulateIsolate
-            }
-          />
+<div className="space-y-3">
 
+  <NodeDetailPanel
+    selectedNode={selectedNode}
+    selectedEdge={selectedEdge}
+    onClose={() => {
+      setSelectedNode(null);
+      setSelectedEdge(null);
+    }}
+    onSimulateIsolate={
+      handleSimulateIsolate
+    }
+  />
+
+  <BlastRadiusPanel
+    selectedNode={selectedNode}
+  />
+
+</div>
         </div>
 
       </div>

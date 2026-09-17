@@ -32,19 +32,71 @@ export const NexusLandingPage = () => {
       setMetrics(metricsResponse.data || null);
       setAlerts(Array.isArray(alertsResponse.data) ? alertsResponse.data : []);
       setAttackChains(Array.isArray(chainsResponse.data) ? chainsResponse.data : []);
-      const topology = Array.isArray(graphResponse.data) ? graphResponse.data : [];
-      const topologyNodes = topology.filter((item) => item.group === 'nodes' || item.data?.source == null).map((item, index) => ({
-        id: item.data?.id || `node-${index}`,
-        label: item.data?.label || item.data?.name || 'ENTITY',
-        type: item.data?.type || 'entity',
-        x: 12 + ((index * 29) % 76),
-        y: 18 + ((index * 43) % 66),
-        color: '#2563eb',
-      }));
-      const nodeIds = new Set(topologyNodes.map((node) => node.id));
-      const topologyEdges = topology.filter((item) => item.group === 'edges' || item.data?.source != null).map((item) => [item.data?.source, item.data?.target]).filter(([source, target]) => nodeIds.has(source) && nodeIds.has(target));
-      setGraphNodes(topologyNodes);
-      setGraphEdges(topologyEdges);
+const topologyData = graphResponse?.data ?? {};
+
+let rawNodes = [];
+let rawEdges = [];
+
+if (Array.isArray(topologyData)) {
+  rawNodes = topologyData.filter(
+    (item) => item.group === 'nodes' || !item.data?.source
+  );
+
+  rawEdges = topologyData.filter(
+    (item) => item.group === 'edges' || item.data?.source
+  );
+} else {
+  rawNodes = Array.isArray(topologyData.nodes)
+    ? topologyData.nodes
+    : [];
+
+  rawEdges = Array.isArray(topologyData.edges)
+    ? topologyData.edges
+    : [];
+}
+
+const topologyNodes = rawNodes.map((item, index) => {
+  const data = item?.data || item || {};
+
+  return {
+    id: data.id || `node-${index}`,
+    label:
+      data.label ||
+      data.name ||
+      data.hostname ||
+      data.ip ||
+      data.address ||
+      'ENTITY',
+    type: data.type || 'entity',
+    x: 12 + ((index * 29) % 76),
+    y: 18 + ((index * 43) % 66),
+    color: '#2563eb',
+  };
+});
+
+const nodeIds = new Set(
+  topologyNodes.map((node) => node.id)
+);
+
+const topologyEdges = rawEdges
+  .map((item) => {
+    const data = item?.data || item || {};
+
+    return [
+      data.source,
+      data.target,
+    ];
+  })
+  .filter(
+    ([source, target]) =>
+      source &&
+      target &&
+      nodeIds.has(source) &&
+      nodeIds.has(target)
+  );
+
+setGraphNodes(topologyNodes);
+setGraphEdges(topologyEdges);
     } catch (requestError) {
       console.error('Failed to load NEXUS intelligence:', requestError);
       setError(requestError.response?.data?.message || requestError.message || 'Connect a backend to stream live intelligence.');
